@@ -1,0 +1,183 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: Arial, Helvetica, sans-serif;
+}
+#header{
+    height: 46px;
+    background-color: aqua;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+}
+#header .login ul li {
+    list-style-type: none;
+}
+#header .login ul li a{
+    display: flex;
+    text-decoration: none;
+    margin-left: 500px;
+    border-bottom : 0.25px solid #fff;
+    color: aliceblue;
+    margin-top: 3px;
+}
+.text-white{
+    color: #fff !important;
+}
+.clear{
+    clear: both;
+}
+.col{
+    float:left;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+#nav {
+    display: inline-block;
+}
+#nav , .subnav {
+   list-style-type: none;
+}
+#nav > li {
+    display: inline-block;
+}
+#nav li {
+    position: relative;
+}
+#nav > li > a {
+    color : #fff;
+}
+
+#nav li a {
+    text-decoration: none;
+    line-height: 46px;
+    padding: 0 24px;
+    display: block;
+}
+#nav > li:hover > a {
+    color: aquamarine;
+    background-color: #fff;
+}
+#nav .subnav {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 0 15px aqua;
+    min-width: 150px;
+    top:100%;
+    left: 0;
+}
+#nav .subnav li a {
+    color: aquamarine;
+}
+#nav .subnav li:hover a{
+    color: #000;
+    background-color: #fff;
+}
+#nav .subnav a {
+    color: #000;
+    padding: 0 12px;
+    line-height: 38px;
+}
+#nav li:hover .subnav{
+    display: block;
+}
+#nav .nav-arrow-down{
+    font-size: 12px;
+}
+#header .search-btn{
+    float: right;
+    padding: 0 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 15px;
+
+}
+#header .search-icon {
+    color: #fff;
+    font-size: 15px;
+}
+.content {
+    margin-top: 50px;
+    display: flex;
+}
+.content-left{
+    width: 10%;
+    margin-right: 15px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-left: 100px;
+    margin-top: 75px;
+    line-height: 30px;
+}
+.content-left ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    
+}
+.content-left ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-size: 15px;
+    padding: 10px;
+    font-weight: bold;
+    background-color: aqua;
+}
+.content-right{
+    width: 90%;
+}
+.tours-buy-btn{
+    color: #fff;
+    background-color: rgb(11, 242, 250);
+    text-decoration: none;
+    padding: 14px 18px;
+    display: inline-block;
+    margin-top: 15px;
+    border : 1px solid aqua;
+    border-radius: 5px;
+    margin-left: 55px;
+    font-size: 15px;
+}
+.tours-buy-btn:hover{
+    color: #fff;
+    background-color: #ccc;
+}
+.tours-book{
+    flex-wrap: wrap;
+    display: flex;
+}
+.tours-book .tours-item{
+    width: calc(100%/6);
+    margin: 40px 40px;
+}
+.tours-item .tours-content h3 , .tours-item .tours-content p {
+    font-size: 15px;
+    margin-left: 65px;
+    margin-top: 10px;
+}
+.tours-item img{
+	margin-left:60px;
+}
+.tours-content h3{
+	display: block;
+  	display: -webkit-box;
+	-webkit-line-clamp: 0.5;
+  	-webkit-box-orient: vertical;
+  	text-overflow: ellipsis;
+  
+}
+.pagi{
+	margin-top : 300px;
+}
