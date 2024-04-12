@@ -1,8 +1,8 @@
-//package com.devpro.NgoManhHungFECuoiKhoa.services;
+//package com.DoAn.NgoManhHung.services;
 //
 //import org.springframework.stereotype.Service;
 //
-//import com.devpro.NgoManhHungFECuoiKhoa.model.User;
+//import com.DoAn.NgoManhHung.model.User;
 //
 //
 //@Service

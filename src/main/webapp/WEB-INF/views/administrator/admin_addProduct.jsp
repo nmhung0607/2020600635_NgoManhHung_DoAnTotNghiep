@@ -101,7 +101,10 @@
 								<label for="title">Title (required)</label>
 								<sf:input path="title" autocomplete="off" type="text" class="form-control" id="title" placeholder="Title" required="required"></sf:input>
 							</div>
-							
+							<div class="form-group mb-2">
+								<label for="price">Quanlity (required)</label>
+								<sf:input type="number" autocomplete="off" path="soluong" class="form-control" id="soluong" placeholder="Quanlity" required="required"></sf:input>
+							</div>
 							<div class="form-group mb-2">
 								<label for="price">Price (required)</label>
 								<sf:input type="number" autocomplete="off" path="price" class="form-control" id="price" placeholder="Price" required="required"></sf:input>

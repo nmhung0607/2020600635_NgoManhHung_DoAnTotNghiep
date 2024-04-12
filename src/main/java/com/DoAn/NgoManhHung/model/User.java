@@ -1,4 +1,4 @@
-//package com.devpro.NgoManhHungFECuoiKhoa.model;
+//package com.DoAn.NgoManhHung.model;
 //
 //import java.util.Collection;
 //import java.util.HashSet;
@@ -14,8 +14,8 @@
 //import javax.persistence.OneToMany;
 //import javax.persistence.Table;
 //
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
+////import org.springframework.security.core.GrantedAuthority;
+////import org.springframework.security.core.userdetails.UserDetails;
 //
 //@Entity
 //@Table(name = "tbl_users")

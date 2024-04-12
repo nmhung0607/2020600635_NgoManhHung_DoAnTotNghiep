@@ -120,7 +120,7 @@
 							<td>${c.id}</td>
 							<td>${c.title}</td>
 							<td><img alt="" style="width: 100px; height: 100px;"
-								src="${base }/upload/${c.avatar}"></td>
+								src="${base }/upload/products/avatar/${c.avatar}"></td>
 							<td><fmt:setLocale value="vi_VN" scope="session" /> <fmt:formatNumber
 									value="${c.price }" type="currency" /></td>
 							<td><fmt:setLocale value="vi_VN" scope="session" /> <fmt:formatNumber
