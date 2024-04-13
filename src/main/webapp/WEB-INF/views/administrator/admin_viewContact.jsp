@@ -98,8 +98,8 @@
             <tbody>
                 <tr>
                     <td>${c.id}</td>
-                    <td>${c.first_name}</td>
-                    <td>${c.last_name}</td>
+                    <td>${c.firstName}</td>
+                    <td>${c.lastName}</td>
                     <td>${c.email}</td>
                     <td>${c.message}</td>
                     <td>

@@ -184,8 +184,8 @@ public class ProductService extends BaseService<Products>{
 			// tìm kiếm theo title và description
 			if (!StringUtils.isEmpty(searchModel.getKeyword())) {
 				sql += " and (p.title like '%" + searchModel.getKeyword() + "%'" + 
-						     " or p.detail_description like '%" + searchModel.getKeyword() + "%'" + 
-						     " or p.short_description like '%" + searchModel.getKeyword() + "%')";
+						     " or p.details_des like '%" + searchModel.getKeyword() + "%'" + 
+						     " or p.short_des like '%" + searchModel.getKeyword() + "%')";
 			}
 		}	
 		return getEntitiesByNativeSQL(sql,searchModel.getPage());
@@ -200,8 +200,8 @@ public class ProductService extends BaseService<Products>{
 			// tìm kiếm theo title và description
 			if (!StringUtils.isEmpty(searchModel.getKeyword())) {
 				sql += " and (p.title like '%" + searchModel.getKeyword() + "%'" + 
-						     " or p.detail_description like '%" + searchModel.getKeyword() + "%'" + 
-						     " or p.short_description like '%" + searchModel.getKeyword() + "%')";
+						     " or p.details_des like '%" + searchModel.getKeyword() + "%'" + 
+						     " or p.short_desc like '%" + searchModel.getKeyword() + "%')";
 			}
 			if (searchModel.getSort_by()!=null) {
 				if(searchModel.getSort_by().equals("giathap")) {

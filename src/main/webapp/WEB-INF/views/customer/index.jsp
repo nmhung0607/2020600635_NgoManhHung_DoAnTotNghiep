@@ -246,7 +246,7 @@
 												style="top: 1.2rem; right: 1.2rem">Sale</div>
 
 											<!-- Product image-->
-											<img src="${base}/upload/${c.avatar}" class="card-img-top"
+											<img src="${base}/upload/products/avatar/${c.avatar}" class="card-img-top"
 												alt="...">
 
 											<!-- Product details-->
