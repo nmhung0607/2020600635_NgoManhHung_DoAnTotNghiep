@@ -19,7 +19,7 @@ public abstract class BaseEntity {
 	private Integer id;
 
 	@Column(name = "status", nullable = true)
-	private Boolean status;
+	private Boolean status =Boolean.TRUE;
 
 	@Column(name = "created_by", nullable = true)
 	private Integer createdBy;
