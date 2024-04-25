@@ -74,6 +74,8 @@ public class DefaultController extends Base_Controller{
 		// lấy sản phẩm theo product seo 
 		Products product = productService.getEntityByNativeSQL("select * from tbl_products where seo='"+productSeo+"'");
 		model.addAttribute("product", product);
+		List<Products> products = productService.getEntitiesByNativeSQL("select *from tbl_products p where p.status=1");
+		model.addAttribute("products", products);
     return "customer/product_detailss";
     }
 	@RequestMapping(value = {"/trang-chu/{categoryName}"}, method = RequestMethod.GET)

@@ -33,7 +33,6 @@
   <body>
   <jsp:include page="/WEB-INF/views/common/variables.jsp"></jsp:include>
   <jsp:include page="/WEB-INF/views/customer/layout/header1.jsp"></jsp:include>
-    </div>
     <!-- middle section -->
     <div class="middle-section">
       <div class="product">
@@ -88,6 +87,7 @@
           </div>
         </div>
       </div>
+      </div>
       <div class="product-information">
         <div class="attribute-container">
           <div class="description-attribute"><a href="">Description</a></div>
@@ -105,16 +105,18 @@
         </div>
       <div class="related-product-container">
         <div class="related-product">
-          <h3>Related Products</h3>
+          <h3>Related Products</h3> 
+          
           <div class="related-product-images">
-          <c:forEach var="c" items="${pdProducts.data}" varStatus="loop">
+          <c:forEach var="c" items="${products}" varStatus="loop">
             <div class="img-container">
               <img
-                src="./product_details_images/related_products/Rectangle 128.png"
+                src="${base }/upload/${c.avatar}"
                 alt=""
               />
               <div class="name-container">
-                <p class="name"><a href="">Top Wall Digital Clock</a></p>
+                <p class="name"><a href="">${c.title }</a></p>
+                </div>
                 <div class="stars">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
@@ -124,73 +126,18 @@
                 </div>
               </div>
               <p class="price">$51.00</p>
-            </div>
+              <div class="add_love">
+            <button class="add">Add To cart</button>>
+            
+          </div>
              </c:forEach>
-            <div class="img-container">
-              <img
-                src="./product_details_images/related_products/Rectangle 130.png"
-                alt=""
-              />
-              <div class="name-container">
-                <p class="name"><a href="">Mens Fashion Wear</a></p>
-                <div class="stars">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-              </div>
-              <p class="price">$43.00</p>
-            </div>
-
-            <div class="img-container">
-              <img
-                src="./product_details_images/related_products/Rectangle 131.png"
-                alt=""
-              />
-              <div class="name-container">
-                <p class="name"><a href="">Women’s Fashion</a></p>
-                <div class="stars">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-              </div>
-              <p class="price">$67.00</p>
-            </div>
-
-            <div class="img-container">
-              <img
-                src="./product_details_images/related_products/Rectangle 133.png"
-                alt=""
-              />
-              <div class="name-container">
-                <p class="name"><a href="">Wolx Dummy Fashion</a></p>
-                <div class="stars">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-              </div>
-              <p class="price">$67.00</p>
-            </div>
-          </div>
-
-          <div class="sponsor-bottom">
-            <img src="login_images/sponsors.png" alt="" />
-          </div>
         </div>
       </div>
     </div>
    
     <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website</p></div>
-        </footer>
+     </footer>
     <!-- footer -->
     
       

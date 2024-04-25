@@ -201,13 +201,13 @@ public class ProductService extends BaseService<Products>{
 			if (!StringUtils.isEmpty(searchModel.getKeyword())) {
 				sql += " and (p.title like '%" + searchModel.getKeyword() + "%'" + 
 						     " or p.details_des like '%" + searchModel.getKeyword() + "%'" + 
-						     " or p.short_desc like '%" + searchModel.getKeyword() + "%')";
+						     " or p.short_des like '%" + searchModel.getKeyword() + "%')";
 			}
 			if (searchModel.getSort_by()!=null) {
-				if(searchModel.getSort_by().equals("giathap")) {
+				if(searchModel.getSort_by().equals("giathap")==true) {
 					sql+=" order by p.price_sale desc";
 				}
-				else if(searchModel.getSort_by().equals("giacao")) {
+				else if(searchModel.getSort_by().equals("giacao")==true) {
 					sql+=" order by p.price_sale asc";
 				}
 			}
