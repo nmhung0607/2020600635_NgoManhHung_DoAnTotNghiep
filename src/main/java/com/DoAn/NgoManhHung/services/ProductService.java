@@ -222,7 +222,7 @@ public class ProductService extends BaseService<Products>{
 
 		if (searchModel.getCategoryName()!= null) {
 			// tìm kiếm theo title và description
-			sql += " and category_id=(select id from  tbl_category where name = '%" + searchModel.getCategoryName() + "%')";
+			sql += " and category_id=(select id from  tbl_category where name = '" + searchModel.getCategoryId() + "')";
 		}	
 		return getEntitiesByNativeSQL(sql,searchModel.getPage());
 		

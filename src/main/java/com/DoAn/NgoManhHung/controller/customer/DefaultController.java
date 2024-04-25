@@ -64,7 +64,7 @@ public class DefaultController extends Base_Controller{
             final HttpServletResponse response) {
 		List<Products> products = productService.findAll();
 		model.addAttribute("products", products);
-    return "customer/details"; //WEB-INF/views/customer/index.jsp
+    return "customer/product_detailss"; //WEB-INF/views/customer/index.jsp
     }
 	@RequestMapping(value = {"/details/{productSeo}"}, method = RequestMethod.GET)
 	public String defaultViewDeTail(final Model model,
@@ -74,7 +74,7 @@ public class DefaultController extends Base_Controller{
 		// lấy sản phẩm theo product seo 
 		Products product = productService.getEntityByNativeSQL("select * from tbl_products where seo='"+productSeo+"'");
 		model.addAttribute("product", product);
-    return "customer/details";
+    return "customer/product_detailss";
     }
 	@RequestMapping(value = {"/trang-chu/{categoryName}"}, method = RequestMethod.GET)
 	public String defaultViewCategory(final Model model,
