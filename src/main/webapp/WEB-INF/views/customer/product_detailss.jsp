@@ -66,10 +66,9 @@
               ${product.price }
             </p>
           </div>
-          <p class="color">Color</p>
+          <p class="color">Dung lượng</p>
           <p class="des">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-            tellus porttitor purus, et volutpat sit.
+            Laptop văn phòng
           </p>
           <div class="add_love">
             <div class="add">Add To cart</div>

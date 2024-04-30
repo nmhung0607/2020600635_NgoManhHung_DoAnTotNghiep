@@ -24,175 +24,17 @@
 	href="${base}/css/header_main.css">
 <link rel='stylesheet' type='text/css' media='screen'
 	href="${base}/css/header_base.css">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	
+<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/bootstrap.min.css">
+	<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header.css">
 </head>
 <body>
-	<div class="app">
-		<header class="header">
-			<div class="gridd">
-				<nav class="header__navbar">
-					<ul class="header__navbar-list">
-						<li class="header__navbar-item header__navbar-item--separate">Vào
-							cửa hàng bằng ứng dụng
-							<div class="header__qr"></div>
-						</li>
-						<li class="header__navbar-item"><span
-							class="header__navbar--title--no--pointer">Kết nối</span> <a
-							href="" class="header__navbar-icon-link"> <i
-								class="fab fa-facebook"></i>
-						</a> <a href="" class="header__navbar-icon-link"> <i
-								class="fab fa-instagram"></i>
-						</a></li>
-					</ul>
-					<ul class="header__navbar-list">
-						<li class="header__navbar-item"><a href=""
-							class="header__navbar-item-link"> <i class="fas fa-bell"></i>
-								Thông báo
-						</a></li>
-						<li class="header__navbar-item"><a href="${base }/contact-us"
-							class="header__navbar-item-link"> <i
-								class="fas fa-contact-book"></i>Liên hệ
-						</a></li>
-						<li class="header__navbar-item"><a href=""
-							class="header__navbar-item-link"> <i
-								class="far fa-question-circle"></i> Trợ giúp
-						</a></li>
-						<c:if test="${!isLogined }">
-							<li
-								class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">
-								<a href="${base}/register"> Đăng kí</a>
-							</li>
-							<li class="header__navbar-item header__navbar-item--strong">
-								<a href="${base}/login"> Đăng nhập</a>
-							</li>
-						</c:if>
-
-						<c:if test="${isLogined}">
-							<li class="header__navbar-item header__navbar-user"><img
-								src="${base}/img/nmh.jpg" alt="" class="header__navbar-user-img">
-								<span class="header__navbar-user-name">${userLogined.email}</span>
-								<ul class="header__navbar-user-menu">
-									<li class="header__navbar-user-item"><a href="">Đơn
-											mua </a></li>
-									<li class="header__navbar-user-item"><a
-										href="${base}/logout">Đăng xuất</a></li>
-								</ul></li>
-						</c:if>
-
-					</ul>
-				</nav>
-				<div class="header-with-search">
-					<div class="header__logo">
-						<div class="header__logo-img">
-							<a href="${base}/trang-chu"><img src="${base}/img/nmh.jpg"
-								alt="" width="50px" height="50px"></a>
-						</div>
-					</div>
-
-					<div class="header__search" >
-
-						<form action="${base }/trang-chu" method="get" style="display:flex" class="header__search-input-wrap">
-							<div class="header__search-input-wrap">
-								<input type="text" id="keyword" name="keyword"
-									class="header__search-input"
-									placeholder="Tìm kiếm sản phẩm . ex : Laptop , Macbook.......">
-
-							</div>
-							<button class="header__search-btn">
-								<i class="fas fa-search header__search-btn-icon"></i>
-							</button>
-						</form>
-					</div>
-
-					<div class="header__cart">
-						<div class="header__cart-wrap">
-							<a href="${base }/cart/checkout" class="btn"> <i
-								class="fas fa-shopping-cart header__cart-icon me-1"></i> <span
-								id="iconShowTotalItemsInCart" class="header__cart-notice">
-									${totalItems} </span> <span class="header__cart-name">Giỏ hàng
-									của bạn</span> <c:if test=" empty ${cart.getCartItems()}">
-									<div class="header__cart-list header__cart-list--no-cart">
-										<img src="./assets/img/no-cart.png" alt=""
-											class="header__cart-no-cart-img">
-									</div>
-								</c:if> <!--Has cart-->
-								<div class="header__cart-list">
-									<div class="header__cart-heading">Sản phẩm đã thêm</div>
-									<c:forEach items="${cart.getCartItems()}" var="ci">
-										<ul class="header__cart-list-item">
-											<li class="header__cart-item"><img
-												src="${base}/upload/${ci.avatar}" alt=""
-												class="header__cart-img">
-												<div class="header__cart-item-info">
-													<div class="header__cart-item-head">
-														<h5 class="header__cart-item-name">${ci.productName}</h5>
-														<div class="header__cart-item-price-wrap">
-															<span class="header__cart-item-price">${ci.priceUnit}</span>
-															<span class="header__cart-item-multiply">x</span> <span
-																class="header__cart-item-quanlity">${ci.quanlity}</span>
-														</div>
-													</div>
-													<div class="header__cart-item-body">
-														<span class="header__cart-item-des"> Phân loại :
-															Gaming </span>
-													</div>
-												</div></li>
-
-										</ul>
-									</c:forEach>
-
-									<button class="btn btn--primary header__cart-view">Xem
-										giỏ hàng</button>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</header>
-
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			</ol>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img class="d-block w-100" src="${base}/img/slider5.jpg"
-						alt="First slide" style="height: 460px;">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="${base}/img/slider2.jpg"
-						alt="Second slide" style="height: 460px;">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="${base}/img/slider3.jpg"
-						alt="Third slide" style="height: 460px;">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="${base}/img/slider4.jpg"
-						alt="Fourth slide" style="height: 460px;">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="${base}/img/slider1.jpg"
-						alt="Five slide" style="height: 460px;">
-				</div>
-			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
-		</div>
-
+    <jsp:include page="/WEB-INF/views/common/variables.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/views/customer/layout/header.jsp"></jsp:include>
+	<div class="app"">
 		<div class="app_container">
 			<div class="gridd">
 				<div class="grid__roww">
@@ -292,7 +134,7 @@
 						</div>
 						<div class="row">
 							<div class="col-12 d-flex justify-content-center">
-								<div id="paging"></div>
+								<div id="paging">1234</div>
 							</div>
 						</div>
 					</section>
@@ -439,6 +281,7 @@
 	</div>
 	<script src="${base}/js/jquery-3.6.0.min.js"></script>
 	<script src="${base}/js/scripts.js"></script>
+	<script src="${base}/js/header.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="${base}/js/jquery.simplePagination.js"></script>
@@ -457,6 +300,6 @@
 	    });
 	});
 	</script>
-
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><br /><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><br /><script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
