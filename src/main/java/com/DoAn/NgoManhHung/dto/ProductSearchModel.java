@@ -6,7 +6,7 @@ public class ProductSearchModel extends BaseSearchModel{
 	// tìm theo category
 	private Integer categoryId;
 	private String title;
-	private String sort_by="giathap";
+	private String sort_by;
 	private String categoryName;
 	private String orderAddress;
     

@@ -29,14 +29,13 @@ public abstract class Base_Controller {
 //     public List<SaleOrder> getAllSaleOrder(){
 //    	 return saleOrderService.findAll(); 
 //     }
-//     public Integer getInteger(HttpServletRequest request, String paramName) {
-// 		try {
-// 			return Integer.parseInt(request.getParameter(paramName));
-// 		} catch (Exception e) {
-// 			return null;
-// 		}
-// 	}
-}
+     public Integer getInteger(HttpServletRequest request, String paramName) {
+ 		try {
+ 			return Integer.parseInt(request.getParameter(paramName));
+ 		} catch (Exception e) {
+ 			return null;
+ 		}
+ 	}
 // 	@ModelAttribute("isLogined")
 // 	public boolean isLogined() {
 // 		boolean isLogined=false;
@@ -54,11 +53,11 @@ public abstract class Base_Controller {
 // 		}
 // 		return new User();
 // 	}
-// 	public Integer getCurrentPage(HttpServletRequest request) {
-// 		try {
-// 			return Integer.parseInt(request.getParameter("page"));
-// 		} catch (Exception e) {
-// 			return 1;
-// 		}
-// 	}
-//}
+ 	public Integer getCurrentPage(HttpServletRequest request) {
+ 		try {
+ 			return Integer.parseInt(request.getParameter("page"));
+ 		} catch (Exception e) {
+ 			return 1;
+ 		}
+ 	}
+}

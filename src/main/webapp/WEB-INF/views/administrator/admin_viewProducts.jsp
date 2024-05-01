@@ -28,15 +28,13 @@
 	<div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                <div class="sidebar-heading border-bottom bg-light">Admin</div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Danh mục</a> 
+                 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewProducts">Sản phẩm</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewOrder">Đơn hàng</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewContact">Contact</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Subcrible</a>
                 </div>
             </div>
             
@@ -46,8 +44,7 @@
                 <!-- Top navigation-->
             	<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 	<div class="container-fluid">
-		<button class="btn btn-primary" id="sidebarToggle">Toggle
-			Menu</button>
+		 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -127,6 +124,18 @@
 									value="${c.price_sale}" type="currency" /></td>
 							<td>${c.short_description}</td>
 							<td>${c.details}</td>
+							<td>
+							  <span id="_product_status_${c.id }">
+							     <c:choose>
+							         <c:when test="${c.status}">
+							            <input type="checkbox" checked="checked" readonly="readonly">
+							         </c:when>
+							         <c:otherwise>
+							             <input type="checkbox"  readonly="readonly">
+							             </c:otherwise>
+							             </c:choose>
+							   </span>
+							</td>
 							<td><a class="btn btn-danger" role="button"
 								onclick="DeleteProduct(${c.id});">Delete</a> 
 								<a

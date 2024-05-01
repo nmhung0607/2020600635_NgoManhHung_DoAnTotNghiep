@@ -99,17 +99,6 @@
 													<h5 class="fw-bolder">
 														<a href="${base }/details/${c.seo}">${c.title }</a>
 													</h5>
-
-													<!-- Product reviews-->
-													<div
-														class="d-flex justify-content-center small text-warning mb-2">
-														<div class="bi-star-fill"></div>
-														<div class="bi-star-fill"></div>
-														<div class="bi-star-fill"></div>
-														<div class="bi-star-fill"></div>
-														<div class="bi-star-fill"></div>
-													</div>
-
 													<!-- Product price-->
 													<fmt:setLocale value="vi_VN" />
 													<span class="text-muted text-decoration-line-through">

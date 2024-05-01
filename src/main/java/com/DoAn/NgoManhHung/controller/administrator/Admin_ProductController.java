@@ -100,16 +100,4 @@ public class Admin_ProductController extends Base_Controller{
 		model.addAttribute("searchModel", searchModel);
 		return "administrator/admin_viewProducts";
 	}
-    private Integer getInteger(HttpServletRequest request, String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public int getCurrentPage(HttpServletRequest request) {
-		try {
-			return Integer.parseInt(request.getParameter("page"));
-		}
-		catch(Exception E) {
-			return 1;
-		}
-	}
 }

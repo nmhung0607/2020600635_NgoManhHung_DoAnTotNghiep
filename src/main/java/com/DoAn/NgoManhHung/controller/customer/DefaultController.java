@@ -43,14 +43,6 @@ public class DefaultController extends Base_Controller{
 		model.addAttribute("pdProducts", pdProducts);
     	return "customer/index"; //WEB-INF/views/customer/index.jsp
     }
-	public int getCurrentPage(HttpServletRequest request) {
-		try {
-			return Integer.parseInt(request.getParameter("page"));
-		}
-		catch(Exception E) {
-			return 1;
-		}
-	}
 
 	/**
 //	 * @param model

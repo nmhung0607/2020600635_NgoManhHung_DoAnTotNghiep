@@ -57,14 +57,6 @@ public class AdminController extends Base_Controller {
 //		model.addAttribute("contactList", contactList);
 //		return "administrator/administrator"; // WEB-INF/views/customer/index.jsp
 //	}
-	public int getCurrentPage(HttpServletRequest request) {
-		try {
-			return Integer.parseInt(request.getParameter("page"));
-		}
-		catch(Exception E) {
-			return 1;
-		}
-	}
 	@RequestMapping(value = { "admin/admin_viewContact" }, method = RequestMethod.GET)
 	public String defaultViewContact(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
 		ContactSearchModel searchModel = new ContactSearchModel();

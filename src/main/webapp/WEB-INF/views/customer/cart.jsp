@@ -15,14 +15,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Shop Homepage - Start Bootstrap Template</title>
+<title>Cart</title>
 
 <!-- COMMON -->
 <jsp:include page="/WEB-INF/views/common/variables.jsp"></jsp:include>
 
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-
+<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header_main.css">
+<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header_base.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	
+<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/bootstrap.min.css">
+	<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header.css">
 <!-- CSS -->
 <jsp:include page="/WEB-INF/views/customer/layout/css.jsp"></jsp:include>
 
@@ -31,7 +40,7 @@
 <body>
 
 	<!-- Navigation-->
-	<jsp:include page="/WEB-INF/views/customer/layout/header1.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/customer/layout/header.jsp"></jsp:include>
 
 	<!-- Section-->
 	<section class="py-5">
@@ -63,11 +72,11 @@
 							<tr>
 								<th scope="row" class="border-0">
 									<div class="p-2">
-										<img src="${base}/img/${ci.avatar}" alt="" width="70" class="img-fluid rounded shadow-sm">
+										<img src="${base}/upload/${ci.avatar}" alt="" width="70px" class="img-fluid rounded shadow-sm">
 										<div class="ml-3 d-inline-block align-middle">
 											<h5 class="mb-0">
 												<a href="#" class="text-dark d-inline-block align-middle">
-													${ci.productName }
+													${ci.productName}
 												</a>
 											</h5>
 
