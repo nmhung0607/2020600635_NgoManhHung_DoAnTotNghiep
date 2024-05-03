@@ -29,10 +29,20 @@
     <link rel="stylesheet" href="${base}/login_page.css" />
     <jsp:include page="/WEB-INF/views/customer/layout/css.jsp"></jsp:include>
     <link rel="stylesheet" href="${base}/css/product_details.css" />
+    <link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header_main.css">
+<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header_base.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	
+<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/bootstrap.min.css">
+	<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header.css">
   </head>
   <body>
   <jsp:include page="/WEB-INF/views/common/variables.jsp"></jsp:include>
-  <jsp:include page="/WEB-INF/views/customer/layout/header1.jsp"></jsp:include>
+  <jsp:include page="/WEB-INF/views/customer/layout/header.jsp"></jsp:include>
     <!-- middle section -->
     <div class="middle-section">
       <div class="product">

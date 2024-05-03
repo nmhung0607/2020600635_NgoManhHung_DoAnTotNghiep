@@ -33,11 +33,11 @@ import com.DoAn.NgoManhHung.dto.OderSearchModel;
 import com.DoAn.NgoManhHung.model.Contact;
 import com.DoAn.NgoManhHung.model.Item;
 import com.DoAn.NgoManhHung.model.Products;
-//import com.DoAn.NgoManhHung.model.SaleOrder;
+import com.DoAn.NgoManhHung.model.SaleOrder;
 import com.DoAn.NgoManhHung.services.ContactService;
 import com.DoAn.NgoManhHung.services.PagerData;
-//import com.DoAn.NgoManhHung.services.ProductService;
-//import com.devpro.NgoManhHungFECuoiKhoa.services.SaleOrderService;
+import com.DoAn.NgoManhHung.services.ProductService;
+import com.DoAn.NgoManhHung.services.SaleOrderService;
 import com.mysql.cj.protocol.Resultset;
 
 @Controller
@@ -100,14 +100,14 @@ public class AdminController extends Base_Controller {
 		model.addAttribute("item", new Item());
 		return "administrator/administrator";
 	}
-//	@RequestMapping(value = { "admin/admin_viewOrder" }, method = RequestMethod.GET)
-//	public String defaultViewOrder(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
-//		OderSearchModel searchModel = new OderSearchModel();
-//		searchModel.setKeyword(request.getParameter("keyword"));
-//		searchModel.setOrderAddress(request.getParameter("orderAddress"));
-//		searchModel.setPage(getCurrentPage(request));
-//		PagerData<SaleOrder> orderList= saleOrderService.search(searchModel);
-//		model.addAttribute("orderList", orderList);
-//		return "administrator/admin_viewOrder"; // WEB-INF/views/customer/index.jsp
-//	}
+	@RequestMapping(value = { "admin/admin_viewOrder" }, method = RequestMethod.GET)
+	public String defaultViewOrder(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
+		OderSearchModel searchModel = new OderSearchModel();
+		searchModel.setKeyword(request.getParameter("keyword"));
+		searchModel.setOrderAddress(request.getParameter("orderAddress"));
+		searchModel.setPage(getCurrentPage(request));
+		PagerData<SaleOrder> orderList= saleOrderService.search(searchModel);
+		model.addAttribute("orderList", orderList);
+		return "administrator/admin_viewOrder"; // WEB-INF/views/customer/index.jsp
+	}
 }

@@ -24,10 +24,11 @@ import com.DoAn.NgoManhHung.controller.Base_Controller;
 import com.DoAn.NgoManhHung.dto.Cart;
 import com.DoAn.NgoManhHung.dto.CartItem;
 import com.DoAn.NgoManhHung.model.Products;
-//import com.DoAn.NgoManhHung.model.SaleOrder;
-//import com.DoAn.NgoManhHung.model.SaleOrderProducts;
+import com.DoAn.NgoManhHung.model.SaleOrder;
+
+import com.DoAn.NgoManhHung.model.SaleOrderProducts;
 import com.DoAn.NgoManhHung.services.ProductService;
-//import com.DoAn.NgoManhHung.services.SaleOrderService;
+import com.DoAn.NgoManhHung.services.SaleOrderService;
 
 
 
@@ -36,8 +37,8 @@ public class CartController extends Base_Controller {
 
 	@Autowired
 	private ProductService productService;
-//	@Autowired
-//	private SaleOrderService saleOrderService;
+	@Autowired
+	private SaleOrderService saleOrderService;
 	
 	
 	
@@ -48,48 +49,48 @@ public class CartController extends Base_Controller {
 						   final HttpServletResponse response) throws IOException {
 		return "customer/cart"; // -> đường dẫn tới View.
 	}
-//	@RequestMapping(value = { "/cart/checkout" }, method = RequestMethod.POST)
-//	public String cartFinished(final Model model, 
-//						   final HttpServletRequest request, 
-//						   final HttpServletResponse response) throws IOException {
-//		
-//		// Lấy thông tin khách hàng
-//		String customerFullName = request.getParameter("customerFullName");
-//		String customerEmail = request.getParameter("customerEmail");
-//		String customerPhone = request.getParameter("customerPhone");
-//		String customerAddress = request.getParameter("customerAddress");
-//
-//		// tạo hóa đơn + với thông tin khách hàng lấy được
-//		SaleOrder saleOrder = new SaleOrder();
-//		saleOrder.setCustomerName(customerFullName);
-//		saleOrder.setCustomerEmail(customerEmail);
-//		saleOrder.setCustomerAddress(customerAddress);
-//		saleOrder.setCustomerPhone(customerPhone);	
-//		saleOrder.setCode(String.valueOf(System.currentTimeMillis())); // mã hóa đơn
-//		
-//		// lấy giỏ hàng
-//		HttpSession session = request.getSession();
-//		Cart cart = (Cart) session.getAttribute("cart");
-//		
-//		// lấy sản phẩm trong giỏ hàng
-//		for (CartItem cartItem : cart.getCartItems()) {
-//			SaleOrderProducts saleOrderProducts = new SaleOrderProducts();
-//			saleOrderProducts.setProduct(productService.getById(cartItem.getProductId()));
-//			saleOrderProducts.setQuality(cartItem.getQuanlity());
-//
-//			// sử dụng hàm tiện ích add hoặc remove đới với các quan hệ onetomany
-//			saleOrder.addSaleOrderProducts(saleOrderProducts);
-//		}
-//		
-//		// lưu vào database
-//		saleOrderService.saveOrUpdate(saleOrder);
-//		model.addAttribute("thongbao", "Cảm ơn bạn đã mua hàng");
-//		// Xóa dữ liệu giỏ hàng trong secction
-//		session.setAttribute("cart", null);
-//		session.setAttribute("totalItems", 0);
-//		return "customer/cart__success"; // -> đường dẫn tới View.
-//		
-//	}
+	@RequestMapping(value = { "/cart/checkout" }, method = RequestMethod.POST)
+	public String cartFinished(final Model model, 
+						   final HttpServletRequest request, 
+						   final HttpServletResponse response) throws IOException {
+		
+		// Lấy thông tin khách hàng
+		String customerFullName = request.getParameter("customerFullName");
+		String customerEmail = request.getParameter("customerEmail");
+		String customerPhone = request.getParameter("customerPhone");
+		String customerAddress = request.getParameter("customerAddress");
+
+		// tạo hóa đơn + với thông tin khách hàng lấy được
+		SaleOrder saleOrder = new SaleOrder();
+		saleOrder.setCustomerName(customerFullName);
+		saleOrder.setCustomerEmail(customerEmail);
+		saleOrder.setCustomerAddress(customerAddress);
+		saleOrder.setCustomerPhone(customerPhone);	
+		saleOrder.setCode(String.valueOf(System.currentTimeMillis())); // mã hóa đơn
+		
+		// lấy giỏ hàng
+		HttpSession session = request.getSession();
+		Cart cart = (Cart) session.getAttribute("cart");
+		
+		// lấy sản phẩm trong giỏ hàng
+		for (CartItem cartItem : cart.getCartItems()) {
+			SaleOrderProducts saleOrderProducts = new SaleOrderProducts();
+			saleOrderProducts.setProduct(productService.getById(cartItem.getProductId()));
+			saleOrderProducts.setQuality(cartItem.getQuanlity());
+
+			// sử dụng hàm tiện ích add hoặc remove đới với các quan hệ onetomany
+			saleOrder.addSaleOrderProducts(saleOrderProducts);
+		}
+		
+		// lưu vào database
+		saleOrderService.saveOrUpdate(saleOrder);
+		model.addAttribute("thongbao", "Cảm ơn bạn đã mua hàng");
+		// Xóa dữ liệu giỏ hàng trong secction
+		session.setAttribute("cart", null);
+		session.setAttribute("totalItems", 0);
+		return "customer/cart__success"; // -> đường dẫn tới View.
+		
+	}
 	/**
 	 * Thêm 1 sản phẩm vào trong giỏ hàng khi click nút "Add To Cart"
 	 */
