@@ -29,7 +29,7 @@
 								<c:if test="${isLogined}">
 							    <li class="header__navbar-item header__navbar-user"><img
 								src="${base}/img/nmh.jpg" alt="" class="header__navbar-user-img">
-								<span class="header__navbar-user-name">${userLogined.email}</span>
+								<span class="header__navbar-user-name" style="color:black">${userLogined.username}</span>
 								<ul class="header__navbar-user-menu">
 									<li class="header__navbar-user-item"><a href="">Đơn
 											mua </a></li>

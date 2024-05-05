@@ -291,5 +291,12 @@
 	    });
 	});
 	</script>
+	<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="AI_Chat"
+  agent-id="97f7183b-b2b8-49ea-a4b8-b192fb8a08f8"
+  language-code="en"
+></df-messenger>
 </body>
 </html>

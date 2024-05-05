@@ -87,6 +87,7 @@
 									<strong>${ci.priceUnit}</strong>
 								</td>
 								<td class="border-0 align-middle change-slg">
+								    <div class="addd flex11">
 									<button onclick="UpdateQuanlityCart('${base }', ${ci.productId}, -1)" value="-">-</button>
 									<strong><span  id="quanlity_${ci.productId}" class="total_1_sp" style="font-size:15px">${ci.quanlity}</span></strong>
 									<button onclick="UpdateQuanlityCart('${base }', ${ci.productId}, 1)" value="+">+</button>

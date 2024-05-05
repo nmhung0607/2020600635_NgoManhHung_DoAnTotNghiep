@@ -25,14 +25,10 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;500;700&family=Lato:wght@400;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="${base}/css/general.css" />
-    <link rel="stylesheet" href="${base}/login_page.css" />
+    
     <jsp:include page="/WEB-INF/views/customer/layout/css.jsp"></jsp:include>
     <link rel="stylesheet" href="${base}/css/product_details.css" />
-    <link rel='stylesheet' type='text/css' media='screen'
-	href="${base}/css/header_main.css">
-<link rel='stylesheet' type='text/css' media='screen'
-	href="${base}/css/header_base.css">
+   
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	
 <link rel='stylesheet' type='text/css' media='screen'
@@ -45,58 +41,46 @@
   <jsp:include page="/WEB-INF/views/customer/layout/header.jsp"></jsp:include>
     <!-- middle section -->
     <div class="middle-section">
-      <div class="product">
-        <div class="photos-grid">
-          <div class="three-photos-container">
-            <div class="sub-photo">
-              <img src="product_details_images/Rectangle 134.png" alt="" />
-            </div>
-            <div class="sub-photo">
-              <img src="product_details_images/Rectangle 136.png" alt="" />
-            </div>
-            <div class="sub-photo">
-              <img src="product_details_images/Rectangle 137.png" alt="" />
-            </div>
-          </div>
-          <div class="big-photo-container">
-            <img src="${base }/upload/${product.avatar}" alt="" />
-          </div>
+      <div class="containerr flexx">
+      <div class="leftt">
+        <div class="main_imagee">
+          <img src="${base }/upload/${product.avatar}" class="slide" style="width: 100%;height: 75%;">
         </div>
-        <div class="product-des">
-          <h2>${product.title }</h2>
-          <div class="five_stars">
-            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-            ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
-            ><i class="fa-solid fa-star"></i>
-            (22)
-          </div>
-          <div class="price">
-            <p class="new-price">${product.price_sale }</p>
-            <p class="old-price" style="text-decoration: line-through">
-              ${product.price }
-            </p>
-          </div>
-          <p class="color">Dung lượng</p>
-          <p class="des">
-            Laptop văn phòng
-          </p>
-          <div class="add_love">
-            <div class="add">Add To cart</div>
-            <button type="button" class="love">
-              <i class="fa-solid fa-heart"></i>
-            </button>
-          </div>
-          <p class="cat" style="font-weight: 600">Categories:</p>
-          <p class="tags" style="font-weight: 600">Tags</p>
-          <div class="social-media-sharing" style="font-weight: 600">
-            <p class="share">Share</p>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-twitter-square"></i>
-          </div>
+        <div class="optionn flexx">
+          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
+          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
+          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
+          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
+          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
+          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
         </div>
       </div>
+      <div class="rightt">
+        <h3>${product.title}</h3>
+        <h4> <fmt:formatNumber value="${product.price}" type="currency"/> </h4>
+        <p>${product.short_description} </p>
+        
+        <div class="colorr flex11">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h5>Quanlity</h5>
+        <div class="addd flex11">
+          <span>-</span>
+          <label>1</label>
+          <span>+</span>
+        </div>
+
+        <a class="btn btn-outline-dark mt-auto" href="#"
+														onclick="AddToCart('${base}',${product.id}, 1)">Add to cart</a>
       </div>
+    </div>
+    </div>
       <div class="product-information">
         <div class="attribute-container">
           <div class="description-attribute"><a href="">Description</a></div>
@@ -118,12 +102,12 @@
           
           <div class="related-product-images">
           <c:forEach var="c" items="${products}" varStatus="loop">
-            <div class="img-container">
+            <div class="img-containerr">
               <img
                 src="${base }/upload/${c.avatar}"
                 alt=""
               />
-              <div class="name-container">
+              <div class="name-containerr">
                 <p class="name"><a href="">${c.title }</a></p>
                 </div>
                 <div class="stars">
@@ -143,14 +127,25 @@
         </div>
       </div>
     </div>
-   
+   </div>
     <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website</p></div>
      </footer>
     <!-- footer -->
-    
+    <script src="${base}/js/scripts.js"></script>
+    <script>
+    function img(anything) {
+      document.querySelector('.slide').src = anything;
+    }
+
+    function change(change) {
+      const line = document.querySelector('.home');
+      line.style.background = change;
+    }
+  </script>
       
     
     <jsp:include page="/WEB-INF/views/customer/layout/js.jsp"></jsp:include>
+   
   </body>
 </html>
