@@ -265,8 +265,8 @@
         <div class="carousel-inner" style="height:300px">
 
             <!--Slide 1 thiết lập hiện thị đầu tiên .active-->
-            <div class="carousel-item active">
-                <img class="d-block w-100 " src="${base }/img/slider1.jpg" >
+            <div class="carousel-item active" >
+                <img class="d-block w-100 " src="${base }/img/slider1.jpg" style="width:auto;height:auto;">
                 <!--Cho thêm hiện thị thông tin-->
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Tiêu đề Slide 1</h5>
@@ -276,11 +276,11 @@
 
             <!--Slide 2-->
             <div class="carousel-item">
-                <img class="d-block w-100" src="${base }/img/slider1.jpg">
+                <img class="d-block w-100" src="${base }/img/slider1.jpg" style="width:auto;height:auto;">
             </div>
             <!--Slide 3-->
             <div class="carousel-item">
-                <img class="d-block w-100" src="${base }/img/slider1.jpg">
+                <img class="d-block w-100" src="${base }/img/slider1.jpg" style="width:auto;height:auto;">
             </div>
         </div>
         

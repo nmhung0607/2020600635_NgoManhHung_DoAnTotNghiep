@@ -55,7 +55,7 @@ public class ProductSearchModel extends BaseSearchModel{
 	}
 
 	public void setSort_by(String parameter) {
-		String str="" +this.sort_by;
+		String str=" " +this.sort_by;
 		str=parameter;
 	}
 }

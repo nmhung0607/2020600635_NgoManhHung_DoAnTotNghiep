@@ -51,6 +51,9 @@
 				<table class="table">
 					<thead>
 						<tr>
+						<th scope="col" class="border-0 bg-light">
+								<div class="p-2 px-3 text-uppercase">Image</div>
+							</th>
 							<th scope="col" class="border-0 bg-light">
 								<div class="p-2 px-3 text-uppercase">Product</div>
 							</th>
@@ -70,19 +73,16 @@
 						<!-- hiển thị danh sách sản phẩm trong giỏ hàng -->
 						<c:forEach items="${cart.getCartItems()}" var="ci">
 							<tr>
-								<th scope="row" class="border-0">
-									<div class="p-2">
-										<img src="${base}/upload/${ci.avatar}" alt="" width="70px" class="img-fluid rounded shadow-sm">
-										<div class="ml-3 d-inline-block align-middle">
-											<h5 class="mb-0">
-												<a href="#" class="text-dark d-inline-block align-middle">
-													${ci.productName}
-												</a>
-											</h5>
-
-										</div>
-									</div>
-								</th>
+								    <td class="border-0 align-middle ">
+									<img src="${ci.avatar}" alt="" width="70px" class="img-fluid rounded shadow-sm">
+								    </td>
+									
+										
+										<td class="border-0 align-middle ">
+									<strong>${ci.productName}</strong>
+								</td>
+							
+								
 								<td class="border-0 align-middle ">
 									<strong>${ci.priceUnit}</strong>
 								</td>

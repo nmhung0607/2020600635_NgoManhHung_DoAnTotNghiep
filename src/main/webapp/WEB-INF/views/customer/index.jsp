@@ -47,7 +47,7 @@
 								<ul class="category-list">
 									<c:forEach items="${categories}" var="category">
 										<li class="category-item"><a class="category-item__link"
-											href="${base}/trang-chu" title="keyword">${category.name}</a></li>
+											href="${base}/trang-chu" id ="keyword"  title="keyword" value="${searchModel.keyword}">${category.name}</a></li>
 									</c:forEach>
 
 								</ul>
@@ -62,13 +62,14 @@
 									name="keyword" class="form-control" placeholder="Search"
 									style="margin-right: 5px;" value="${searchModel.keyword}">
 								<span class="home-filter__label">Sắp xếp theo</span>
-								<div class="select-input">
-									<select class="select-input__label" name="sort_by" id="sort_by"
-										style="margin-right: 5px;">
-										<option value="0">Lọc theo</option>
-										<option value="giathap">Giá : Thấp đến cao</option>
+								<div class="select-input"> 
+								    <select class="form-control" name="sort_by" id="sort_by"
+						style="margin-right: 5px;" value="${searchModel.sort_by}">
+						<option value="0">All</option>
+						<option value="giathap">Giá : Thấp đến cao</option>
 										<option value="giacao">Giá : Cao đến thấp</option>
-									</select> <i class="fas fa-angle-down"></i>
+					</select>
+									
 
 								</div>
 								<button type="submit" id="btnSearch" name="btnSearch"

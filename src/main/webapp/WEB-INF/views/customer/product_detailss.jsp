@@ -41,46 +41,51 @@
   <jsp:include page="/WEB-INF/views/customer/layout/header.jsp"></jsp:include>
     <!-- middle section -->
     <div class="middle-section">
-      <div class="containerr flexx">
-      <div class="leftt">
-        <div class="main_imagee">
-          <img src="${base }/upload/${product.avatar}" class="slide" style="width: 100%;height: 75%;">
+      <div class="product">
+        <div class="photos-grid">
+          <div class="three-photos-container">
+            <div class="sub-photo">
+              <img src="${base }/img/slider1.jpg" alt="" />
+            </div>
+            <div class="sub-photo">
+              <img src="${base }/img/slider2.jpg" alt="" />
+            </div>
+            <div class="sub-photo">
+              <img src="${base }/img/slider3.jpg" alt="" />
+            </div>
+          </div>
+          <div class="big-photo-container">
+            <img src="${base }/upload/${product.avatar}" alt="" />
+          </div>
         </div>
-        <div class="optionn flexx">
-          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
-          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
-          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
-          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
-          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
-          <img src="${base }/upload/${product.avatar}" onclick="img('${base }/upload/${product.avatar}')">
-        </div>
-      </div>
-      <div class="rightt">
-        <h3>${product.title}</h3>
-        <h4> <fmt:formatNumber value="${product.price}" type="currency"/> </h4>
-        <p>${product.short_description} </p>
+        <div class="product-des">
+          <h2>${product.title }</h2>
         
-        <div class="colorr flex11">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <h5>Quanlity</h5>
-        <div class="addd flex11">
-          <span>-</span>
-          <label>1</label>
-          <span>+</span>
-        </div>
-
-        <a class="btn btn-outline-dark mt-auto" href="#"
+          <div class="price">
+            <p class="new-price"><fmt:formatNumber value="${product.price}" type="currency" /></p>
+            <p class="old-price" style="text-decoration: line-through">
+             <fmt:formatNumber value="${product.price_sale}" type="currency" />
+            </p>
+          </div>
+          <p class="color">Mô tả</p>
+          <p class="des">
+            ${product.short_description }
+          </p>
+												<div class="text-center">
+													<a class="btn btn-outline-dark mt-auto" href="#"
 														onclick="AddToCart('${base}',${product.id}, 1)">Add to cart</a>
+												</div>
+									
+          <p class="cat" style="font-weight: 600">Categories: ${product.getCategories().name}</p>
+          <p class="tags" style="font-weight: 600">Tags:${product.getCategories().name}	</p>
+          <div class="social-media-sharing" style="font-weight: 600">
+            <p class="share">Share</p>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-twitter-square"></i>
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
       <div class="product-information">
         <div class="attribute-container">
           <div class="description-attribute"><a href="">Description</a></div>
@@ -91,25 +96,20 @@
           <div class="video-attribute"><a href="">Video</a></div>
         </div>
         <div class="various-tempor">
-         
-          <p>
-           ${product.details }
-          </p>
+          ${product.details }
         </div>
+      </div>
       <div class="related-product-container">
         <div class="related-product">
-          <h3>Related Products</h3> 
-          
+          <h3>Related Products</h3>
           <div class="related-product-images">
-          <c:forEach var="c" items="${products}" varStatus="loop">
-            <div class="img-containerr">
+            <div class="img-container">
               <img
-                src="${base }/upload/${c.avatar}"
+                src="./product_details_images/related_products/Rectangle 128.png"
                 alt=""
               />
-              <div class="name-containerr">
-                <p class="name"><a href="">${c.title }</a></p>
-                </div>
+              <div class="name-container">
+                <p class="name"><a href="">Top Wall Digital Clock</a></p>
                 <div class="stars">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
@@ -119,33 +119,74 @@
                 </div>
               </div>
               <p class="price">$51.00</p>
-              <div class="add_love">
-            <button class="add">Add To cart</button>>
-            
+            </div>
+
+            <div class="img-container">
+              <img
+                src="./product_details_images/related_products/Rectangle 130.png"
+                alt=""
+              />
+              <div class="name-container">
+                <p class="name"><a href="">Mens Fashion Wear</a></p>
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <p class="price">$43.00</p>
+            </div>
+
+            <div class="img-container">
+              <img
+                src="./product_details_images/related_products/Rectangle 131.png"
+                alt=""
+              />
+              <div class="name-container">
+                <p class="name"><a href="">Women’s Fashion</a></p>
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <p class="price">$67.00</p>
+            </div>
+
+            <div class="img-container">
+              <img
+                src="./product_details_images/related_products/Rectangle 133.png"
+                alt=""
+              />
+              <div class="name-container">
+                <p class="name"><a href="">Wolx Dummy Fashion</a></p>
+                <div class="stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <p class="price">$67.00</p>
+            </div>
           </div>
-             </c:forEach>
+
+          <div class="sponsor-bottom">
+            <img src="login_images/sponsors.png" alt="" />
+          </div>
         </div>
       </div>
     </div>
-   </div>
     <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website</p></div>
      </footer>
     <!-- footer -->
     <script src="${base}/js/scripts.js"></script>
-    <script>
-    function img(anything) {
-      document.querySelector('.slide').src = anything;
-    }
-
-    function change(change) {
-      const line = document.querySelector('.home');
-      line.style.background = change;
-    }
-  </script>
-      
-    
     <jsp:include page="/WEB-INF/views/customer/layout/js.jsp"></jsp:include>
-   
   </body>
 </html>

@@ -111,7 +111,7 @@ public class ProductService extends BaseService<Products>{
 		// có đẩy avartar ??? => xóa avatar cũ đi và thêm avatar mới
 		if (!isEmptyUploadFile(productAvatar)) {
 			// xóa avatar trong folder lên
-			new File("C:/upload/" + productInDb.getAvatar()).delete();
+			new File("C:/upload/product/pictures" + productInDb.getAvatar()).delete();
 			String fileName = getUniqueUploadFileName(productAvatar.getOriginalFilename());
 			// sử dụng avatar mới
 			productAvatar.transferTo(new File("C:/upload/product/avatar/" + productAvatar.getOriginalFilename()));
@@ -203,12 +203,12 @@ public class ProductService extends BaseService<Products>{
 						     " or p.details_des like '%" + searchModel.getKeyword() + "%'" + 
 						     " or p.short_des like '%" + searchModel.getKeyword() + "%')";
 			}
-			if (searchModel.getSort_by()!=null) {
-				if(searchModel.getSort_by().equals("giathap")==true) {
-					sql+=" order by p.price_sale desc";
+			if (!StringUtils.isEmpty(searchModel.getSort_by())) {
+				if(searchModel.getSort_by().equals("giathap")) {
+					sql+=" ORDER BY p.price_sale DESC";
 				}
-				else if(searchModel.getSort_by().equals("giacao")==true) {
-					sql+=" order by p.price_sale asc";
+				else if(searchModel.getSort_by().equals("giacao")) {
+					sql+=" ORDER BY p.price_sale ASC";
 				}
 			}
 		}	
