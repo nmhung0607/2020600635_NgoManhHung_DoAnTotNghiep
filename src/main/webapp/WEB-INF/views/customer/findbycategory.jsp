@@ -47,7 +47,7 @@
 								<ul class="category-list">
 									<c:forEach items="${categories}" var="category">
 										<li class="category-item"><a class="category-item__link"
-											href="/trang-chu/${category.name}" id ="categoryName"  title="${category.name}" value="${category.name}">${category.name}</a></li>
+											href="${base }/category/${category.seo}" id ="categoryName"  title="categoryName" value="${category.name}">${category.name}</a></li>
 									</c:forEach>
 
 								</ul>
@@ -57,16 +57,17 @@
 					<div class="grid__columnn-10">
 						<form action="${base}/trang-chu" class="py-5" method="get">
 							<div class="home-filter">
-								<input id="page" name="page" class="form-control" type="hidden"> <input type="text" id="keyword"
+								<input id="page" name="page" class="form-control"
+									style="display: none"> <input type="text" id="keyword"
 									name="keyword" class="form-control" placeholder="Search"
 									style="margin-right: 5px;" value="${searchModel.keyword}">
 								<span class="home-filter__label">Sắp xếp theo</span>
 								<div class="select-input"> 
 								    <select class="form-control" name="sort_by" id="sort_by"
 						style="margin-right: 5px;" value="${searchModel.sort_by}">
-						<option value="${searchModel.sort_by}">All</option>
+						<option value="0">All</option>
 						<option value="giathap">Giá : Thấp đến cao</option>
-						<option value="giacao">Giá : Cao đến thấp</option>
+										<option value="giacao">Giá : Cao đến thấp</option>
 					</select>
 									
 

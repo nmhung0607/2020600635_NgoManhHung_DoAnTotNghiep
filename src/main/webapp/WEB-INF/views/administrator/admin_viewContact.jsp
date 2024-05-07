@@ -28,12 +28,11 @@
                 <div class="sidebar-heading border-bottom bg-light">ADMIN</div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Danh mục</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewCategory"">Danh mục</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewProducts">Sản phẩm</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewOrder">Đơn hàng</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewAccount"">Profile</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewContact">Contact</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Subcrible</a>
                 </div>
             </div>
             
@@ -43,32 +42,28 @@
                 <!-- Top navigation-->
             	<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 	<div class="container-fluid">
-		<button class="btn btn-primary" id="sidebarToggle">Toggle
-			Menu</button>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
+				<li class="nav-item active"><a class="nav-link" href="${base }/admin/admin_viewProducts">Home</a></li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
 					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#!">Action</a> 
 						
 						<c:if test="${isAdmin }">
-							<a class="dropdown-item" href="#!">Another action</a>
+							<a class="dropdown-item" href="#!"> ${userLogined.username }</a>
 						</c:if>						
 						
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${base }/logout">Logout(${userLogined.email })</a>
+						<a class="dropdown-item" href="${base }/logout">Logout(${userLogined.username })</a>
 					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
-</nav>
+	</nav>
 <form action="${base }/admin/admin_viewContact" class="form-inline"
 			method="get">
 			<div class="d-flex flex-row justify-content-between mt-4">
@@ -122,6 +117,7 @@
     </div>
     <script src="${base}/js/jquery-3.6.0.min.js"></script>
 	<script src="${base}/js/jquery.simplePagination.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
     function DeleteContact(contactId) {
 		// tạo javascript object.  

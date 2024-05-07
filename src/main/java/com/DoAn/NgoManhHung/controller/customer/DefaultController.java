@@ -22,13 +22,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.DoAn.NgoManhHung.controller.Base_Controller;
 import com.DoAn.NgoManhHung.dto.ProductSearchModel;
+import com.DoAn.NgoManhHung.model.Categories;
 import com.DoAn.NgoManhHung.model.Products;
 import com.DoAn.NgoManhHung.services.PagerData;
 import com.DoAn.NgoManhHung.services.ProductService;
+import com.DoAn.NgoManhHung.services.categoriesService;
 @Controller
 public class DefaultController extends Base_Controller{
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private categoriesService cateService;
 	@RequestMapping(value = {"/trang-chu"}, method = RequestMethod.GET)
      public String defaultView(final Model model,
     		                   final HttpServletRequest request,
@@ -41,7 +45,21 @@ public class DefaultController extends Base_Controller{
 		searchModel.setPage(getCurrentPage(request));
 		PagerData<Products> pdProducts = productService.sort(searchModel);
 		model.addAttribute("pdProducts", pdProducts);
+		model.addAttribute("searchModel", searchModel);
     	return "customer/index"; //WEB-INF/views/customer/index.jsp
+    }
+	
+	@RequestMapping(value = {"/categories/{categorySeo}"}, method = RequestMethod.GET)
+	public String defaultViewCate(final Model model,
+            final HttpServletRequest request,
+            final HttpServletResponse response,
+            @PathVariable("categorySeo") String categorySeo ) {
+		// lấy sản phẩm theo product seo 
+		Categories category =cateService.getEntityByNativeSQL("select * from tbl_products where seo='"+categorySeo+"'");
+		model.addAttribute("category", category);
+		List<Products> products = productService.getEntitiesByNativeSQL("select *from tbl_products p where p.status=1");
+		model.addAttribute("products", products);
+    return "customer/findbycategory";
     }
 
 	/**

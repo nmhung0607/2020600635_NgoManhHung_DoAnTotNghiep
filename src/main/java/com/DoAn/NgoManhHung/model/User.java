@@ -1,6 +1,8 @@
 package com.DoAn.NgoManhHung.model;
 
 import java.util.Collection;
+
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.DoAn.NgoManhHung.model.Role;
 
 
 
@@ -121,17 +122,16 @@ public class User extends BaseEntity implements UserDetails{
 	 */
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return this.roles;
 	}
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 	@Override

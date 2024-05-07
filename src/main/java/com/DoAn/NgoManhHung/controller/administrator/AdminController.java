@@ -28,16 +28,22 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.DoAn.NgoManhHung.controller.Base_Controller;
+import com.DoAn.NgoManhHung.dto.CategorySearchModel;
 import com.DoAn.NgoManhHung.dto.ContactSearchModel;
 import com.DoAn.NgoManhHung.dto.OderSearchModel;
+import com.DoAn.NgoManhHung.dto.UserSearchModel;
+import com.DoAn.NgoManhHung.model.Categories;
 import com.DoAn.NgoManhHung.model.Contact;
 import com.DoAn.NgoManhHung.model.Item;
 import com.DoAn.NgoManhHung.model.Products;
 import com.DoAn.NgoManhHung.model.SaleOrder;
+import com.DoAn.NgoManhHung.model.User;
 import com.DoAn.NgoManhHung.services.ContactService;
 import com.DoAn.NgoManhHung.services.PagerData;
 import com.DoAn.NgoManhHung.services.ProductService;
 import com.DoAn.NgoManhHung.services.SaleOrderService;
+import com.DoAn.NgoManhHung.services.UserService;
+import com.DoAn.NgoManhHung.services.categoriesService;
 import com.mysql.cj.protocol.Resultset;
 
 @Controller
@@ -45,10 +51,10 @@ import com.mysql.cj.protocol.Resultset;
 public class AdminController extends Base_Controller {
 	@Autowired
 	private ContactService contactService;
-//@Autowired
-//	private ProductService productService;
-//	@Autowired
-//	private SaleOrderService saleOrderService;
+    @Autowired
+    private UserService userService;
+	@Autowired
+	private categoriesService catSer;
 
 //	@RequestMapping(value = { "admin/administrator" }, method = RequestMethod.GET)
 //	public String defaultView(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
@@ -110,4 +116,39 @@ public class AdminController extends Base_Controller {
 		model.addAttribute("orderList", orderList);
 		return "administrator/admin_viewOrder"; // WEB-INF/views/customer/index.jsp
 	}
+	@RequestMapping(value = { "admin/admin_viewAccount" }, method = RequestMethod.GET)
+	public String defaultViewAccount(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
+		UserSearchModel searchModel = new UserSearchModel();
+		searchModel.setKeyword(request.getParameter("keyword"));
+		searchModel.setSdt(request.getParameter("sdt"));
+		searchModel.setPage(getCurrentPage(request));
+		PagerData<User> userList= userService.search(searchModel);
+		model.addAttribute("userList", userList);
+		return "administrator/admin_ViewAccount"; // WEB-INF/views/customer/index.jsp
+	}
+	@RequestMapping(value = { "admin/admin_viewCategory" }, method = RequestMethod.GET)
+	public String defaultViewCategory(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
+		CategorySearchModel searchModel = new CategorySearchModel();
+		searchModel.setKeyword(request.getParameter("keyword"));
+		searchModel.setPage(getCurrentPage(request));
+		PagerData<Categories> cateList=catSer.search(searchModel);
+		model.addAttribute("cateList", cateList);
+		return "administrator/admin_viewCategory"; // WEB-INF/views/customer/index.jsp
+	}
+	@RequestMapping(value = { "/admin/category/delete" }, method = RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> deleteCategory(final Model model, 
+															final HttpServletRequest request,
+															final HttpServletResponse response, 
+															final @RequestBody Categories cat) {
+		
+		Categories cateInDb = catSer.getById(cat.getId());
+		cateInDb.setStatus(false);
+		catSer.saveOrUpdate(cateInDb);
+		Map<String, Object> jsonResult = new HashMap<String, Object>();
+		jsonResult.put("code", 200);
+		jsonResult.put("message", "Đã xóa thành công");
+		return ResponseEntity.ok(jsonResult);
+		
+	}
+	
 }

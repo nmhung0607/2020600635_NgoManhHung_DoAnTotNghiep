@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.DoAn.NgoManhHung.model.Categories;
 import com.DoAn.NgoManhHung.model.Contact;
 import com.DoAn.NgoManhHung.model.Products;
+import com.DoAn.NgoManhHung.model.Role;
 import com.DoAn.NgoManhHung.model.User;
 import com.DoAn.NgoManhHung.services.RegisterService;
 import com.DoAn.NgoManhHung.services.UserDetailsServiceImpl;
@@ -42,9 +43,10 @@ public class RegisterController {
 							   	   final HttpServletResponse response, 
 							   	   final @ModelAttribute("user") User user) throws IOException {
     	user.setPassword(new BCryptPasswordEncoder(4).encode(user.getPassword()));
+    	registerService.registerNewUser(user);
 		registerService.saveOrUpdate(user);
 		model.addAttribute("user", new User());
-		return "customer/register";
+		return "customer/trang-chu";
 	}
     @Autowired
 	private UserDetailsServiceImpl userDetailsService;
