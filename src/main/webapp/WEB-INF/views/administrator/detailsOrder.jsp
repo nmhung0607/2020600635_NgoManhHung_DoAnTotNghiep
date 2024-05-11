@@ -12,10 +12,10 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Admin View Contact</title>
+    <title>Admin View Account</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../css/administrator.css'>
-    <script src='main.js'></script>
+    
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
@@ -53,7 +53,7 @@
 					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 						
 						<c:if test="${isAdmin }">
-							<a class="dropdown-item" href="#!"> ${userLogined.username }</a>
+							<a class="dropdown-item" href="#!">${userLogined.username }</a>
 						</c:if>						
 						
 						<div class="dropdown-divider"></div>
@@ -64,7 +64,7 @@
 		</div>
 	</div>
 </nav>
-<form action="${base }/admin/admin_viewOrder" class="form-inline"
+<form action="${base }/admin/admin_viewAccount" class="form-inline"
 			method="get">
 			<div class="d-flex flex-row justify-content-between mt-4">
 				<div class="d-flex flex-row">
@@ -72,13 +72,8 @@
 					<!-- tìm kiếm theo tên sản phẩm -->
 					<input type="text" id="keyword" name="keyword" class="form-control"
 						placeholder="Search" style="margin-right: 5px;" value="${searchModel.keyword}">
-                    <select class="form-control" name="orderAddress" id="orderAddress"
-						style="margin-right: 5px;" value="${searchModel.orderAddress}">
-						<option value="0">Địa chỉ</option>
-						<c:forEach items="${saleOrders}" var="s">
-							<option value="${s.customerAddress}">${s.customerAddress }</option>
-						</c:forEach>
-					</select>
+				    <input type="text" id="sdt" name="sdt" class="form-control"
+						placeholder="Search by Phone" style="margin-right: 5px;" value="${searchModel.sdt}">
 					<!-- tìm kiếm theo danh mục sản phẩm -->
 					<button type="submit" id="btnSearch" name="btnSearch"
 						value="Search" class="btn btn-primary">Seach</button>
@@ -88,24 +83,27 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Mã đơn hàng</th>
-                    <th scope="col">Mã hàng</th>
-                    <th scope="col">Số lượng</th>
-                    <th scope="col">Tên hàng</th>
-                    <th scope="col">Xem chi tiết đơn hàng</th>
+                    <th scope="col">Username</th>
+                   
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Roles</th>
     
                 </tr>
             </thead>
-        <c:forEach var="c" items="${orderList.data}" varStatus="loop">
+        <c:forEach var="c" items="${userList.data}" varStatus="loop">
             <tbody>
                 <tr>
                     <td>${c.id}</td>
-                    <td>${c.getSaleOrder().getCode()}</td>
-                    <td>${c.getProduct().getId()}</td>
-                    <td>${c.quality}</td>
-                    <td>${c.name}</td>
-                     
-                    <td><a href="${base }/admin/admin_viewOrders/${c.id}">Chi tiết</a></td>
+                    <td>${c.username}</td>
+                   
+                    <td>${c.phone}</td>
+                    <td>${c.email}</td>
+                    <td>
+                        <c:forEach items="${user.roles}" var="role">
+                             ${role.name}<br/>
+                        </c:forEach>
+                    </td>
                    
                 </tr>
             </tbody>

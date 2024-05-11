@@ -47,7 +47,7 @@
 								<ul class="category-list">
 									<c:forEach items="${categories}" var="category">
 										<li class="category-item"><a class="category-item__link"
-											href="${base }/category/${category.seo}" id ="categoryName"  title="categoryName" value="${category.name}">${category.name}</a></li>
+											href="/danh-muc?categoryId=${category.id}" id ="categoryId"  title="categoryName" value="${category.name}">${category.name}</a></li>
 									</c:forEach>
 
 								</ul>
@@ -55,16 +55,16 @@
 						</form>
 					</div>
 					<div class="grid__columnn-10">
-						<form action="${base}/trang-chu" class="py-5" method="get">
+						<form action="${base}/danh-muc" class="py-5" method="get">
 							<div class="home-filter">
 								<input id="page" name="page" class="form-control"
 									style="display: none"> <input type="text" id="keyword"
 									name="keyword" class="form-control" placeholder="Search"
-									style="margin-right: 5px;" value="${searchModel.keyword}">
+									style="margin-right: 5px;" value="${searchModel1.keyword}">
 								<span class="home-filter__label">Sắp xếp theo</span>
 								<div class="select-input"> 
 								    <select class="form-control" name="sort_by" id="sort_by"
-						style="margin-right: 5px;" value="${searchModel.sort_by}">
+						style="margin-right: 5px;" value="${searchModel1.sort_by}">
 						<option value="0">All</option>
 						<option value="giathap">Giá : Thấp đến cao</option>
 										<option value="giacao">Giá : Cao đến thấp</option>
@@ -81,7 +81,7 @@
 							<div
 								class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-								<c:forEach var="c" items="${pdProducts.data}" varStatus="loop">
+								<c:forEach var="c" items="${pdProducts1.data}" varStatus="loop">
 									<div class="col mb-5">
 										<div class="card h-100">
 											<!-- Sale badge-->
@@ -299,5 +299,22 @@
   agent-id="97f7183b-b2b8-49ea-a4b8-b192fb8a08f8"
   language-code="en"
 ></df-messenger>
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('#categoryId').val(${searchModel.categoryId});
+		$("#paging").pagination({
+			currentPage: ${pdProducts1.currentPage}, //trang hiện tại
+	        items: ${pdProducts1.totalItems},	//tổng số sản phẩm
+	        itemsOnPage: ${pdProducts1.sizeOfPage}, //số sản phẩm trên 1 trang
+	        cssStyle: 'light-theme',
+	        onPageClick: function(pageNumber, event) {
+	        	$('#page').val(pageNumber);
+	        	$('#btnSearch').trigger('click');
+	        	$('categoryId').val(pdProducts.getCategoryId());
+			},
+	    });
+	});
+	</script>
 </body>
 </html>

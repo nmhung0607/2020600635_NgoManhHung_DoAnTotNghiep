@@ -24,11 +24,15 @@
 <jsp:include page="/WEB-INF/views/common/variables.jsp"></jsp:include>
 <link rel="stylesheet" href="/css/contactv2.css">
 <link rel="stylesheet" href="${base}/customer/layout/css.js">
-<jsp:include page="/WEB-INF/views/customer/layout/css.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/customer/layout/css.jsp"></jsp:include><link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/bootstrap.min.css">
+	<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header.css">
+</head>
 
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/customer/layout/header1.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/customer/layout/header.jsp"></jsp:include>
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">

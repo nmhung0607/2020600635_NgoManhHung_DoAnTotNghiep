@@ -85,6 +85,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">SEO</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Action</th>
     
                 </tr>
             </thead>
@@ -97,6 +98,7 @@
                     <td>${c.status}</td>
                     <td>
                     <a  class="btn btn-danger" role="button" onclick="DeleteCategory(${c.id});">Delete</a>
+                    <a  class="btn" role="button" href="${base}/admin/update_category/${c.id}">Update</a>
                      </td>
                 </tr>
             </tbody>

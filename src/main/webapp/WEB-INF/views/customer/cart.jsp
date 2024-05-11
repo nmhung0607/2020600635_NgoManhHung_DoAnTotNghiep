@@ -20,20 +20,20 @@
 <!-- COMMON -->
 <jsp:include page="/WEB-INF/views/common/variables.jsp"></jsp:include>
 
-<!-- Favicon-->
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-<link rel='stylesheet' type='text/css' media='screen'
-	href="${base}/css/header_main.css">
-<link rel='stylesheet' type='text/css' media='screen'
-	href="${base}/css/header_base.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	
 <link rel='stylesheet' type='text/css' media='screen'
 	href="${base}/css/bootstrap.min.css">
 	<link rel='stylesheet' type='text/css' media='screen'
 	href="${base}/css/header.css">
+	<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header_main.css">
+<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header_base.css">
 <!-- CSS -->
-<jsp:include page="/WEB-INF/views/customer/layout/css.jsp"></jsp:include>
+
 
 </head>
 
@@ -71,16 +71,15 @@
 					<tbody>
 						
 						<!-- hiển thị danh sách sản phẩm trong giỏ hàng -->
-						<c:forEach items="${cart.getCartItems()}" var="ci">
+						<c:forEach items="${cart.cartItems}" var="ci">
 							<tr>
-								    <td class="border-0 align-middle ">
-									<img src="${ci.avatar}" alt="" width="70px" class="img-fluid rounded shadow-sm">
-								    </td>
-									
-										
-										<td class="border-0 align-middle ">
+								    <td class="border-0 align-middle">
+    <img src="${base}/upload/${ci.avatar}" alt="Product Image" width="70px" class="img-fluid rounded shadow-sm">
+</td>
+
+									<td class="border-0 align-middle ">
 									<strong>${ci.productName}</strong>
-								</td>
+								    </td>
 							
 								
 								<td class="border-0 align-middle ">

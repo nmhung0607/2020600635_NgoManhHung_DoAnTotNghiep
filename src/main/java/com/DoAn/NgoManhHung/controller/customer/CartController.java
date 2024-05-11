@@ -39,10 +39,6 @@ public class CartController extends Base_Controller {
 	private ProductService productService;
 	@Autowired
 	private SaleOrderService saleOrderService;
-	
-	
-	
-	
 	@RequestMapping(value = { "/cart/checkout" }, method = RequestMethod.GET)
 	public String cartCheckout(final Model model, 
 						   final HttpServletRequest request, 
@@ -75,10 +71,11 @@ public class CartController extends Base_Controller {
 		// lấy sản phẩm trong giỏ hàng
 		for (CartItem cartItem : cart.getCartItems()) {
 			SaleOrderProducts saleOrderProducts = new SaleOrderProducts();
+			saleOrderProducts.setSaleOrder(saleOrder);
 			saleOrderProducts.setProduct(productService.getById(cartItem.getProductId()));
 			saleOrderProducts.setQuality(cartItem.getQuanlity());
-
-			// sử dụng hàm tiện ích add hoặc remove đới với các quan hệ onetomany
+            saleOrderProducts.setName(cartItem.getProductName());
+			// sử dụng hàm tiện ích  add hoặc remove đới với các quan hệ onetomany
 			saleOrder.addSaleOrderProducts(saleOrderProducts);
 		}
 		
@@ -136,8 +133,9 @@ public class CartController extends Base_Controller {
 
 			cartItem.setProductName(productInDb.getTitle());
 			cartItem.setPriceUnit(productInDb.getPrice());
-
-			cart.getCartItems().add(cartItem); // thêm mới sản phẩm vào giỏ hàng
+            cartItem.setAvatar(productInDb.getAvatar());
+			cart.getCartItems().add(cartItem);
+            // thêm mới sản phẩm vào giỏ hàng
 		}
 
 		// tính tổng tiền

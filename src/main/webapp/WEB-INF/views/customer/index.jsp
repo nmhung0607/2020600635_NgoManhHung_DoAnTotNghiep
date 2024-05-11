@@ -47,7 +47,7 @@
 								<ul class="category-list">
 									<c:forEach items="${categories}" var="category">
 										<li class="category-item"><a class="category-item__link"
-											href="/trang-chu/${category.name}" id ="categoryName"  title="${category.name}" value="${category.name}">${category.name}</a></li>
+											href="/danh-muc?categoryId=${category.id}" id ="categoryName"  title="${category.name}" value="${category.name}">${category.name}</a></li>
 									</c:forEach>
 
 								</ul>
@@ -123,7 +123,7 @@
 						</div>
 						<div class="row">
 							<div class="col-12 d-flex justify-content-center">
-								<div id="paging">1234</div>
+								<div id="paging"></div>
 							</div>
 						</div>
 					</section>

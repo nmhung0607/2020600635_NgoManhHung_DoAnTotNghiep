@@ -3,6 +3,7 @@ package com.DoAn.NgoManhHung.controller.administrator;
 import java.io.File;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,10 +39,12 @@ import com.DoAn.NgoManhHung.model.Contact;
 import com.DoAn.NgoManhHung.model.Item;
 import com.DoAn.NgoManhHung.model.Products;
 import com.DoAn.NgoManhHung.model.SaleOrder;
+import com.DoAn.NgoManhHung.model.SaleOrderProducts;
 import com.DoAn.NgoManhHung.model.User;
 import com.DoAn.NgoManhHung.services.ContactService;
 import com.DoAn.NgoManhHung.services.PagerData;
 import com.DoAn.NgoManhHung.services.ProductService;
+import com.DoAn.NgoManhHung.services.SaleOrderProductsServices;
 import com.DoAn.NgoManhHung.services.SaleOrderService;
 import com.DoAn.NgoManhHung.services.UserService;
 import com.DoAn.NgoManhHung.services.categoriesService;
@@ -55,7 +59,8 @@ public class AdminController extends Base_Controller {
     private UserService userService;
 	@Autowired
 	private categoriesService catSer;
-
+    @Autowired
+    private SaleOrderProductsServices saleOrderProductService;
 //	@RequestMapping(value = { "admin/administrator" }, method = RequestMethod.GET)
 //	public String defaultView(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
 //		model.addAttribute("item", new Item());
@@ -72,13 +77,6 @@ public class AdminController extends Base_Controller {
 		model.addAttribute("contactList", contactList);
 		return "administrator/admin_viewContact"; // WEB-INF/views/customer/index.jsp
 	}
-//	@RequestMapping(value = { "admin/admin_viewProducts" }, method = RequestMethod.GET)
-//	public String defaultViewProducts(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
-//		List<Products> productList= productService.findAll();
-//		model.addAttribute("productList", productList);
-//        model.addAttribute("product", new Products());
-//        return "administrator/admin_viewProducts"; // WEB-INF/views/customer/index.jsp
-//	}
 	@RequestMapping(value = { "/admin/contact/delete" }, method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> deleteProduct(final Model model, 
 															final HttpServletRequest request,
@@ -112,9 +110,17 @@ public class AdminController extends Base_Controller {
 		searchModel.setKeyword(request.getParameter("keyword"));
 		searchModel.setOrderAddress(request.getParameter("orderAddress"));
 		searchModel.setPage(getCurrentPage(request));
-		PagerData<SaleOrder> orderList= saleOrderService.search(searchModel);
+		PagerData<SaleOrderProducts> orderList= saleOrderProductService.search(searchModel);
 		model.addAttribute("orderList", orderList);
 		return "administrator/admin_viewOrder"; // WEB-INF/views/customer/index.jsp
+	}
+	@RequestMapping(value = { "admin/admin_viewOrders/{id}" }, method = RequestMethod.GET)
+	public String defaultViewDetailsOrder(final Model model, final HttpServletRequest request, final HttpServletResponse response,@PathVariable Integer id) {
+		SaleOrderProducts sale1= saleOrderProductService.getById(id);
+		
+		model.addAttribute("sale1",sale1);
+		
+		return "administrator/detailsOrder"; // WEB-INF/views/customer/index.jsp
 	}
 	@RequestMapping(value = { "admin/admin_viewAccount" }, method = RequestMethod.GET)
 	public String defaultViewAccount(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
@@ -126,6 +132,7 @@ public class AdminController extends Base_Controller {
 		model.addAttribute("userList", userList);
 		return "administrator/admin_ViewAccount"; // WEB-INF/views/customer/index.jsp
 	}
+	
 	@RequestMapping(value = { "admin/admin_viewCategory" }, method = RequestMethod.GET)
 	public String defaultViewCategory(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
 		CategorySearchModel searchModel = new CategorySearchModel();
@@ -134,6 +141,31 @@ public class AdminController extends Base_Controller {
 		PagerData<Categories> cateList=catSer.search(searchModel);
 		model.addAttribute("cateList", cateList);
 		return "administrator/admin_viewCategory"; // WEB-INF/views/customer/index.jsp
+	}
+	@RequestMapping(value = { "/admin/update_category/{categoryId}" }, method = RequestMethod.POST)
+	public String updatedCate(final Model model, 
+								   final HttpServletRequest request,
+							   	   final HttpServletResponse response, 
+							   	   final @PathVariable("categoryId") Integer categoryId,
+							   	   @ModelAttribute("category") Categories category) throws IOException {
+		Categories cate1 = catSer.getById(categoryId);
+		cate1.setName(category.getName());
+		catSer.saveOrUpdate(cate1);
+		model.addAttribute("message", "Cập nhật thành công");
+		return "administrator/admin_updateCate";
+	}
+	@RequestMapping(value = { "/admin/update_category/{categoryId}" }, method = RequestMethod.GET)
+	public String updatedcateGet(final Model model, 
+								   final HttpServletRequest request,
+								   Principal principal,
+							   	   final HttpServletResponse response,
+							   	   @PathVariable("categoryId") Integer categoryId) throws IOException {
+		
+	    
+	    // Truyền thông tin của người dùng hiện tại vào biểu mẫu để cập nhật
+		Categories category = catSer.getById(categoryId);
+	    model.addAttribute("category", category);
+		return "administrator/admin_updateCate";
 	}
 	@RequestMapping(value = { "/admin/category/delete" }, method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> deleteCategory(final Model model, 

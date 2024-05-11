@@ -1,5 +1,8 @@
 package com.DoAn.NgoManhHung.controller.customer;
 
+import java.io.File;
+import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 
@@ -19,13 +22,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.DoAn.NgoManhHung.controller.Base_Controller;
 import com.DoAn.NgoManhHung.dto.ProductSearchModel;
 import com.DoAn.NgoManhHung.model.Categories;
+import com.DoAn.NgoManhHung.model.Contact;
 import com.DoAn.NgoManhHung.model.Products;
+import com.DoAn.NgoManhHung.model.User;
 import com.DoAn.NgoManhHung.services.PagerData;
 import com.DoAn.NgoManhHung.services.ProductService;
+import com.DoAn.NgoManhHung.services.UserService;
 import com.DoAn.NgoManhHung.services.categoriesService;
 @Controller
 public class DefaultController extends Base_Controller{
@@ -33,6 +41,8 @@ public class DefaultController extends Base_Controller{
 	private ProductService productService;
 	@Autowired
 	private categoriesService cateService;
+	@Autowired
+	private UserService userService;
 	@RequestMapping(value = {"/trang-chu"}, method = RequestMethod.GET)
      public String defaultView(final Model model,
     		                   final HttpServletRequest request,
@@ -47,6 +57,26 @@ public class DefaultController extends Base_Controller{
 		model.addAttribute("pdProducts", pdProducts);
 		model.addAttribute("searchModel", searchModel);
     	return "customer/index"; //WEB-INF/views/customer/index.jsp
+    }
+	@RequestMapping(value = "/danh-muc", method = RequestMethod.GET)
+    public String categoryView(final Model model,
+                               final HttpServletRequest request,
+                               final HttpServletResponse response
+                              ) {
+        // Logic để hiển thị trang danh mục và danh sách sản phẩm của danh mục này
+        // ...
+		String cateId=request.getParameter("categoryId");
+		int categoryId=Integer.parseInt(cateId);
+		ProductSearchModel searchModel1=new ProductSearchModel();
+		searchModel1.setKeyword(request.getParameter("keyword"));
+		searchModel1.setSort_by(request.getParameter("sort_by"));
+		searchModel1.setCategoryId(categoryId);
+		searchModel1.setPage(getCurrentPage(request));
+		
+		PagerData<Products> pdProducts1 = productService.searchbyCategory(searchModel1);
+		model.addAttribute("pdProducts1", pdProducts1);
+		model.addAttribute("searchModel1", searchModel1);
+        return "customer/findbycategory";
     }
 	
 	@RequestMapping(value = {"/categories/{categorySeo}"}, method = RequestMethod.GET)
@@ -106,4 +136,32 @@ public class DefaultController extends Base_Controller{
             final HttpServletResponse response) {
     return "customer/subcriber";
     }	
+	@RequestMapping(value = { "/cap-nhat-account/{username}" }, method = RequestMethod.POST)
+	public String updatedacc(final Model model, 
+								   final HttpServletRequest request,
+							   	   final HttpServletResponse response, 
+							   	   final @PathVariable("username") String username,
+							   	   @ModelAttribute("user") User userForm) throws IOException {
+		User user1 = userService.loadUserByUsername(username);
+		user1.setEmail(userForm.getEmail());
+		user1.setPhone(userForm.getPhone());
+		user1.setShipping_address(userForm.getShipping_address());
+		userService.saveOrUpdate(user1);
+		
+		model.addAttribute("message", "Cảm ơn bạn đã cập nhật");
+		return "customer/updateAccount";
+	}
+	@RequestMapping(value = { "/cap-nhat-account/{username}" }, method = RequestMethod.GET)
+	public String updatedaccGet(final Model model, 
+								   final HttpServletRequest request,
+								   Principal principal,
+							   	   final HttpServletResponse response,
+							   	   @ModelAttribute("user") User userForm) throws IOException {
+		String username = principal.getName();
+	    User currentUser = userService.loadUserByUsername(username);
+	    
+	    // Truyền thông tin của người dùng hiện tại vào biểu mẫu để cập nhật
+	    model.addAttribute("user", currentUser);
+		return "customer/updateAccount";
+	}
 }

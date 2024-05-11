@@ -58,13 +58,16 @@
 	margin: 0 auto;
 }
 </style>
-
+<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/bootstrap.min.css">
+	<link rel='stylesheet' type='text/css' media='screen'
+	href="${base}/css/header.css">
 </head>
 
 <body style="text-align: center; background: #EBF0F5;">
 
 	<!-- Navigation-->
-	<jsp:include page="/WEB-INF/views/customer/layout/header1.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/customer/layout/header.jsp"></jsp:include>
 
 	<!-- Section-->
 	<section class="py-5">

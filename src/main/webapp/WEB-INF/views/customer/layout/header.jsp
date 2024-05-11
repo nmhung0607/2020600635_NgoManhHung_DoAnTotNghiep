@@ -31,8 +31,7 @@
 								src="${base}/img/nmh.jpg" alt="" class="header__navbar-user-img">
 								<span class="header__navbar-user-name" style="color:black">${userLogined.username}</span>
 								<ul class="header__navbar-user-menu">
-									<li class="header__navbar-user-item"><a href="">Đơn
-											mua </a></li>
+									<li class="header__navbar-user-item"><a href="${base}/cap-nhat-account/${userLogined.username}">Cập nhật thông tin tài khoản </a></li>
 									<li class="header__navbar-user-item"><a
 										href="${base}/logout">Đăng xuất</a></li>
 								</ul></li>
@@ -111,52 +110,16 @@
 
 							<div class="main_nav_menu">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="${base }/trang-chu">Home<i class="fas fa-chevron-down"></i></a></li>
 									<li class="hassubs">
-										<a href="#">Laptop<i class="fas fa-chevron-down"></i></a>
+										<a href="#">Danh mục<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li>
-												<a href="#">Lenovo<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Lenovo 1<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Lenovo 3<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Lenovo 2<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">DELL<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">APPLE<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">HP<i class="fas fa-chevron-down"></i></a></li>
+											<c:forEach items="${categories}" var="category">
+										<li class="category-item"><a class="category-item__link"
+											href="/danh-muc?categoryId=${category.id}" id ="categoryName"  title="${category.name}" value="${category.name}">${category.name}</a></li>
+									</c:forEach>
 										</ul>
 									</li>
-									<li class="hassubs">
-										<a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li>
-												<a href="#">APPLE<i class="fas fa-chevron-down"></i></a>
-												<ul>
-													<li><a href="#">Laptop<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Mobiles<i class="fas fa-chevron-down"></i></a></li>
-													<li><a href="#">Ipads<i class="fas fa-chevron-down"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Samsung<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">Lenovo<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="#">DELL<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									<li class="hassubs">
-										<a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-										<ul>
-											<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-											<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-										</ul>
-									</li>
-									<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="${base }/contact-us">Contact<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>

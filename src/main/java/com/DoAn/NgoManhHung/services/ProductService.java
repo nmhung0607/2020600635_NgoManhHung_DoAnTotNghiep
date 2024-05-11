@@ -222,8 +222,33 @@ public class ProductService extends BaseService<Products>{
 
 		if (searchModel.getCategoryName()!= null) {
 			// tìm kiếm theo title và description
-			sql += " and category_id=(select id from  tbl_category where name = '" + searchModel.getCategoryId() + "')";
+			sql += " and category_id=(select id from  tbl_category where name = '" + searchModel.getCategoryId() + "'";
 		}	
+		return getEntitiesByNativeSQL(sql,searchModel.getPage());
+		
+	}
+	public PagerData<Products>  searchbyCategory(ProductSearchModel searchModel) {
+
+		// khởi tạo câu lệnh
+		String sql = "SELECT * FROM tbl_products p WHERE p.status=1";
+
+		if (searchModel.getCategoryId()!= null) {
+			// tìm kiếm theo title và description
+			sql += " and category_id = '" + searchModel.getCategoryId() + "'";
+		}	
+		if (!StringUtils.isEmpty(searchModel.getKeyword())) {
+			sql += " and (p.title like '%" + searchModel.getKeyword() + "%'" + 
+					     " or p.details_des like '%" + searchModel.getKeyword() + "%'" + 
+					     " or p.short_des like '%" + searchModel.getKeyword() + "%')";
+		}
+		if (!StringUtils.isEmpty(searchModel.getSort_by())) {
+			if(searchModel.getSort_by().equals("giathap")) {
+				sql+=" ORDER BY p.price_sale DESC";
+			}
+			else if(searchModel.getSort_by().equals("giacao")) {
+				sql+=" ORDER BY p.price_sale ASC";
+			}
+		}
 		return getEntitiesByNativeSQL(sql,searchModel.getPage());
 		
 	}
