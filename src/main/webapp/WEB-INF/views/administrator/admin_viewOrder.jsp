@@ -92,7 +92,6 @@
                     <th scope="col">Mã hàng</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Tên hàng</th>
-                    <th scope="col">Xem chi tiết đơn hàng</th>
     
                 </tr>
             </thead>
@@ -104,8 +103,7 @@
                     <td>${c.getProduct().getId()}</td>
                     <td>${c.quality}</td>
                     <td>${c.name}</td>
-                     
-                    <td><a href="${base }/admin/admin_viewOrders/${c.id}">Chi tiết</a></td>
+                   
                    
                 </tr>
             </tbody>

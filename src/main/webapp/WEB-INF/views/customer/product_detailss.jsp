@@ -44,15 +44,12 @@
       <div class="product">
         <div class="photos-grid">
           <div class="three-photos-container">
+          <c:forEach begin="0" end="2" items="${productImg}" var="s">
             <div class="sub-photo">
-              <img src="${base }/img/slider1.jpg" alt="" />
+              <img src="${base }/upload/${s.path }" alt="" />
             </div>
-            <div class="sub-photo">
-              <img src="${base }/img/slider2.jpg" alt="" />
-            </div>
-            <div class="sub-photo">
-              <img src="${base }/img/slider3.jpg" alt="" />
-            </div>
+           </c:forEach>
+            
           </div>
           <div class="big-photo-container">
             <img src="${base }/upload/${product.avatar}" alt="" />

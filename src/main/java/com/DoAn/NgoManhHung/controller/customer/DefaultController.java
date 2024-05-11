@@ -29,9 +29,11 @@ import com.DoAn.NgoManhHung.controller.Base_Controller;
 import com.DoAn.NgoManhHung.dto.ProductSearchModel;
 import com.DoAn.NgoManhHung.model.Categories;
 import com.DoAn.NgoManhHung.model.Contact;
+import com.DoAn.NgoManhHung.model.ProductImages;
 import com.DoAn.NgoManhHung.model.Products;
 import com.DoAn.NgoManhHung.model.User;
 import com.DoAn.NgoManhHung.services.PagerData;
+import com.DoAn.NgoManhHung.services.ProductImagesService;
 import com.DoAn.NgoManhHung.services.ProductService;
 import com.DoAn.NgoManhHung.services.UserService;
 import com.DoAn.NgoManhHung.services.categoriesService;
@@ -43,6 +45,8 @@ public class DefaultController extends Base_Controller{
 	private categoriesService cateService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ProductImagesService productimgService;
 	@RequestMapping(value = {"/trang-chu"}, method = RequestMethod.GET)
      public String defaultView(final Model model,
     		                   final HttpServletRequest request,
@@ -116,6 +120,8 @@ public class DefaultController extends Base_Controller{
 		model.addAttribute("product", product);
 		List<Products> products = productService.getEntitiesByNativeSQL("select *from tbl_products p where p.status=1");
 		model.addAttribute("products", products);
+		List<ProductImages> productImg = productimgService.getEntitiesByNativeSQL("select *from tbl_product_images e where e.product_id = " +product.getId());
+		model.addAttribute("productImg", productImg);
     return "customer/product_detailss";
     }
 	@RequestMapping(value = {"/trang-chu/{categoryName}"}, method = RequestMethod.GET)

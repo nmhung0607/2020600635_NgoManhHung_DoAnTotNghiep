@@ -280,14 +280,14 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#paging").pagination({
-			currentPage: ${pdProducts.currentPage}, //trang hiện tại
-	        items: ${pdProducts.totalItems},	//tổng số sản phẩm
-	        itemsOnPage: ${pdProducts.sizeOfPage}, //số sản phẩm trên 1 trang
+			currentPage: ${pdProducts1.currentPage}, //trang hiện tại
+	        items: ${pdProducts1.totalItems},	//tổng số sản phẩm
+	        itemsOnPage: ${pdProducts1.sizeOfPage}, //số sản phẩm trên 1 trang
 	        cssStyle: 'compact-theme',
 	        onPageClick: function(pageNumber, event) {
 	        	$('#page').val(pageNumber);
 	        	$('#btnSearch').trigger('click');
-	        	$('categoryId').val(pdProducts.getCategoryId());
+	        	$('categoryId').val(pdProducts1.getCategoryId());
 			},
 	    });
 	});
@@ -302,7 +302,7 @@
 <script type="text/javascript">
 	
 	$(document).ready(function() {
-		$('#categoryId').val(${searchModel.categoryId});
+		$('#categoryId').val(${searchModel1.categoryId});
 		$("#paging").pagination({
 			currentPage: ${pdProducts1.currentPage}, //trang hiện tại
 	        items: ${pdProducts1.totalItems},	//tổng số sản phẩm
@@ -311,7 +311,7 @@
 	        onPageClick: function(pageNumber, event) {
 	        	$('#page').val(pageNumber);
 	        	$('#btnSearch').trigger('click');
-	        	$('categoryId').val(pdProducts.getCategoryId());
+	        	$('categoryId').val(pdProducts1.getCategoryId());
 			},
 	    });
 	});
