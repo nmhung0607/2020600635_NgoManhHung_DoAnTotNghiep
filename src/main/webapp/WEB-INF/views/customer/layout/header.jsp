@@ -214,7 +214,7 @@
 		
 
 	</div>
-	<div id="mycarousel" class="carousel slide" data-ride="carousel">
+	<div id="mycarousel" class="carousel slide" data-ride="carousel" style="height:400px">
 
         <!--Cho hiện thị chỉ số nếu muốn-->
         <ol class="carousel-indicators">
@@ -225,25 +225,20 @@
         <!--Hết tạo chỉ số-->
 
         <!--Các slide bên trong carousel-inner-->
-        <div class="carousel-inner" style="height:300px">
+        <div class="carousel-inner">
 
             <!--Slide 1 thiết lập hiện thị đầu tiên .active-->
             <div class="carousel-item active" >
-                <img class="d-block w-100 " src="${base }/img/slode.jpg" style="width:100%;height:100%;">
-                <!--Cho thêm hiện thị thông tin-->
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Tiêu đề Slide 1</h5>
-                    <p>Dòng text chú thích cho Slide 1</p>
-                </div>
+                <img class="d-block w-100 " src="${base }/img/slode.jpg" style="object-fit:cover;">
             </div>
 
             <!--Slide 2-->
             <div class="carousel-item">
-                <img class="d-block w-100" src="${base }/img/lenovo.jpg" style="width:100%;height:100%;">
+                <img class="d-block w-100" src="${base }/img/lenovo.jpg" style="object-fit:cover;">
             </div>
             <!--Slide 3-->
             <div class="carousel-item">
-                <img class="d-block w-100" src="${base }/img/amdthng5.png" style="width:100%;height:100%;">
+                <img class="d-block w-100" src="${base }/img/amdthng5.png" style="object-fit:cover;">
             </div>
         </div>
         
