@@ -1,5 +1,7 @@
 package com.DoAn.NgoManhHung.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +19,16 @@ public class SaleOrderProducts extends BaseEntity {
 	
 	@Column(name = "quality")
 	private Integer quality;
+	@Column(name = "totalPrice" , precision = 13, scale = 2, nullable = true)
+	private BigDecimal totalPrice;
+	public BigDecimal getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(BigDecimal totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
 	@JoinColumn(name = "name")
 	private String name;
 	public String getName() {

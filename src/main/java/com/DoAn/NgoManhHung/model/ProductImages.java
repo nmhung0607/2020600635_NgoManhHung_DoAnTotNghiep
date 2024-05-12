@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "tbl_product_images")
 public class ProductImages extends BaseEntity {
 	
-	@Column(name = "tittle", nullable = false)
+	@Column(name = "title",length = 1000, nullable = false)
 	private String title;
 
 	@Column(name = "path", nullable = false)

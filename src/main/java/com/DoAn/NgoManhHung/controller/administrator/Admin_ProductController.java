@@ -30,17 +30,24 @@ import com.DoAn.NgoManhHung.model.Products;
 import com.DoAn.NgoManhHung.services.PagerData;
 import com.DoAn.NgoManhHung.services.ProductService;
 import com.DoAn.NgoManhHung.services.categoriesService;
-
+import com.github.slugify.Slugify;
 import com.DoAn.NgoManhHung.dto.ProductSearchModel;
 
 @Controller
 public class Admin_ProductController extends Base_Controller{
      @Autowired
      private ProductService productService;
+     @Autowired
+     private categoriesService catSer;
      @RequestMapping(value = { "admin/admin_addProduct" }, method = RequestMethod.GET)
  	 public String defaultViewAddProducts(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
     	model.addAttribute("product",new Products());
  		return "administrator/admin_addProduct";
+ 	}
+     @RequestMapping(value = { "admin/admin_addCategory" }, method = RequestMethod.GET)
+ 	 public String defaultViewAddCategory(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
+    	model.addAttribute("category",new Categories());
+ 		return "administrator/admin_addCategory";
  	}
     @RequestMapping(value = { "/admin/admin_addProduct/{productId}" }, method = RequestMethod.GET)
  	public String adminProductEdit(final Model model, 
@@ -72,6 +79,17 @@ public class Admin_ProductController extends Base_Controller{
 			productService.update(product, productAvatar, productPictures);
 		}
  		return "redirect:/admin/admin_viewProducts";
+ 	}
+    @RequestMapping(value = { "admin/admin_addCategory" }, method = RequestMethod.POST)
+ 	public String post_spring_formCate(final Model model, 
+ 								   final HttpServletRequest request,
+ 							   	   final HttpServletResponse response, 
+ 							   	   final @ModelAttribute("category") Categories category
+ 							   	   ) throws IOException {
+    	category.setSeo(new Slugify().slugify(category.getName() + "-" + System.currentTimeMillis()));
+ 		catSer.saveOrUpdate(category);
+ 	    
+ 		return "redirect:/admin/admin_viewCategory";
  	}
     @RequestMapping(value = { "/admin/product/delete" }, method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> deleteProduct(final Model model, 

@@ -3,6 +3,7 @@ package com.DoAn.NgoManhHung.controller.administrator;
 import java.io.File;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -61,6 +62,8 @@ public class AdminController extends Base_Controller {
 	private categoriesService catSer;
     @Autowired
     private SaleOrderProductsServices saleOrderProductService;
+    @Autowired
+    private SaleOrderService saleOrderService;
 //	@RequestMapping(value = { "admin/administrator" }, method = RequestMethod.GET)
 //	public String defaultView(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
 //		model.addAttribute("item", new Item());
@@ -119,7 +122,6 @@ public class AdminController extends Base_Controller {
 		SaleOrderProducts sale1= saleOrderProductService.getById(id);
 		
 		model.addAttribute("sale1",sale1);
-		
 		return "administrator/detailsOrder"; // WEB-INF/views/customer/index.jsp
 	}
 	@RequestMapping(value = { "admin/admin_viewAccount" }, method = RequestMethod.GET)
@@ -181,6 +183,24 @@ public class AdminController extends Base_Controller {
 		jsonResult.put("message", "Đã xóa thành công");
 		return ResponseEntity.ok(jsonResult);
 		
+	}
+	@RequestMapping(value = "/admin/adminViewOrderDetails/{orderId}", method = RequestMethod.GET)
+	public String orderDetail(@PathVariable("orderId") Integer orderId, Model model) {
+	    // Truy vấn thông tin đơn đặt hàng từ cơ sở dữ liệu
+	    SaleOrder order = saleOrderService.getById(orderId);
+        
+	    // Truy vấn danh sách các sản phẩm đã đặt trong đơn hàng
+	    List<SaleOrderProducts> orderProducts = saleOrderProductService.findBySaleOrder(order);
+	    BigDecimal total= BigDecimal.ZERO;
+	    for (SaleOrderProducts product:orderProducts) {
+	    	total= total.add(product.getTotalPrice());
+	    }
+	    order.setTotal(total);
+	    // Đặt thông tin đơn đặt hàng và danh sách sản phẩm vào model
+	    model.addAttribute("order", order);
+	    model.addAttribute("orderProducts", orderProducts);
+
+	    return "administrator/detailOrder";
 	}
 	
 }

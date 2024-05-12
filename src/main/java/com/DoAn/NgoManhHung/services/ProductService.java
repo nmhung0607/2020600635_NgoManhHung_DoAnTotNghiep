@@ -111,7 +111,7 @@ public class ProductService extends BaseService<Products>{
 		// có đẩy avartar ??? => xóa avatar cũ đi và thêm avatar mới
 		if (!isEmptyUploadFile(productAvatar)) {
 			// xóa avatar trong folder lên
-			new File("C:/upload/product/pictures" + productInDb.getAvatar()).delete();
+			new File("C:/upload/product/avatar" + productInDb.getAvatar()).delete();
 			String fileName = getUniqueUploadFileName(productAvatar.getOriginalFilename());
 			// sử dụng avatar mới
 			productAvatar.transferTo(new File("C:/upload/product/avatar/" + productAvatar.getOriginalFilename()));
@@ -129,7 +129,7 @@ public class ProductService extends BaseService<Products>{
 			if (productInDb.getProductImages() != null && productInDb.getProductImages().size() > 0) {
 				for (ProductImages opi : productInDb.getProductImages()) {
 					// xóa avatar trong folder lên
-					new File("C:/upload/" + opi.getPath()).delete();
+					new File("C:/upload/product/pictures" + opi.getPath()).delete();
 
 					// xóa dữ liệu trong database
 					productImagesService.delete(opi);

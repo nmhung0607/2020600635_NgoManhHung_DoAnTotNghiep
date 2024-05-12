@@ -70,11 +70,13 @@ public class CartController extends Base_Controller {
 		
 		// lấy sản phẩm trong giỏ hàng
 		for (CartItem cartItem : cart.getCartItems()) {
+			BigDecimal productTotalPrice = productService.getById(cartItem.getProductId()).getPrice().multiply(BigDecimal.valueOf(cartItem.getQuanlity()));
 			SaleOrderProducts saleOrderProducts = new SaleOrderProducts();
 			saleOrderProducts.setSaleOrder(saleOrder);
 			saleOrderProducts.setProduct(productService.getById(cartItem.getProductId()));
 			saleOrderProducts.setQuality(cartItem.getQuanlity());
             saleOrderProducts.setName(cartItem.getProductName());
+            saleOrderProducts.setTotalPrice(productTotalPrice);
 			// sử dụng hàm tiện ích  add hoặc remove đới với các quan hệ onetomany
 			saleOrder.addSaleOrderProducts(saleOrderProducts);
 		}
@@ -140,7 +142,7 @@ public class CartController extends Base_Controller {
 
 		// tính tổng tiền
 		this.calculateTotalPrice(request);
-		
+	   
 		// trả về kết quả
 		Map<String, Object> jsonResult = new HashMap<String, Object>();
 		jsonResult.put("code", 200);

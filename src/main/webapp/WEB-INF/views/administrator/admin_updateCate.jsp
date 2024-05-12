@@ -92,7 +92,7 @@
 								<sf:input path="name" autocomplete="off" type="text" class="form-control" id="name" placeholder="name" required="required"></sf:input>
 						
             <a href="${base}/admin/admin_viewCategory" class="btn btn-secondary active" role="button" aria-pressed="true">Back to list</a>
-			<button type="submit" class="btn btn-primary">Save Product</button>
+			<button type="submit" class="btn btn-primary">Save Category</button>
 			<div class="form-row">
 				<div class="form-group col-sm-6">
 					<c:if test="${not empty message }">

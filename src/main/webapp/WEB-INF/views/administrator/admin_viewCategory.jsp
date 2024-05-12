@@ -76,6 +76,11 @@
 					<!-- tìm kiếm theo danh mục sản phẩm -->
 					<button type="submit" id="btnSearch" name="btnSearch"
 						value="Search" class="btn btn-primary">Seach</button>
+						<div class="d-flex flex-row" style="margin-left: 200px">
+					<a class="btn btn-outline-primary mb-1"
+						href="${base }/admin/admin_addCategory" role="button"> Add New
+					</a>
+				</div>
 				</div>
 			</div>
      <table border="1" class="table table-striped table-bordered table-hover">
@@ -99,7 +104,7 @@
                     <td>
                     <a  class="btn btn-danger" role="button" onclick="DeleteCategory(${c.id});">Delete</a>
                     <a  class="btn" role="button" href="${base}/admin/update_category/${c.id}">Update</a>
-                     </td>
+                   
                 </tr>
             </tbody>
 

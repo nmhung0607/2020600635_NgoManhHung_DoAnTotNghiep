@@ -17,7 +17,7 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel='stylesheet' type='text/css' media='screen'
 	href='${base}/css/administrator.css'>
-<script src='${base }/js/main.js'></script>
+<script src='main.js'></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
 	crossorigin="anonymous"></script>
 <link
@@ -80,84 +80,29 @@
 		</div>
 	</div>
 </nav>
-		<sf:form modelAttribute="product" style="margin-top:50px"
-			action="${base}/admin/admin_addProduct" method="POST"
-			enctype="multipart/form-data">
-			<div class="form-group mb-2">
-								<label for="productId">Product Id</label>
-								<sf:input path="id" id="productId" class="form-control"></sf:input>
-							</div>
-							
+		<sf:form modelAttribute="category" style="margin-top:50px"
+			action="${base}/admin/admin_addCategory" method="POST">
+>
 							<div class="form-group mb-2">
-								<label for="category">Category (required)</label>
-								<sf:select path="categories.id" class="form-control" id="category">
-									<sf:options items="${categories }" itemValue="id" itemLabel="name" />
-								</sf:select>
-							</div>
-							
-							<div class="form-group mb-2">
-								<label for="title">Title (required)</label>
-								<sf:input path="title" autocomplete="off" type="text" class="form-control" id="title" placeholder="Title" required="required"></sf:input>
+								<label for="categoryId">Category Id</label>
+								<sf:input path="id" id="categoryId" class="form-control" name="categoryId"></sf:input>
 							</div>
 							<div class="form-group mb-2">
-								<label for="price">Quanlity (required)</label>
-								<sf:input type="number" autocomplete="off" path="soluong" class="form-control" id="soluong" placeholder="Quanlity" required="required"></sf:input>
-							</div>
-							<div class="form-group mb-2">
-								<label for="price">Price (required)</label>
-								<sf:input type="number" autocomplete="off" path="price" class="form-control" id="price" placeholder="Price" required="required"></sf:input>
-							</div>
-							
-							<div class="form-group mb-2">
-								<label for="priceSale">Price Sale (required)</label>
-								<sf:input type="number" autocomplete="off" path="price_sale" class="form-control" id="priceSale" placeholder="Price sale" required="required"></sf:input>
-							</div>
-							
-							<div class="form-group mb-2">
-								<label for="short_description">Description (required)</label>
-								<sf:textarea autocomplete="off" path="short_description" class="form-control" placeholder="Short Description" id="short_description" rows="3" required="required"></sf:textarea>
-							</div>
-							
-							<div class="form-group mb-2">
-								<label for="detail_description">Details (required)</label>
-								<sf:textarea autocomplete="off" path="details" class="form-control summernote" id="detail_description" rows="3" required="required"></sf:textarea>
-							</div>
-							
-							<div class="form-group form-check mb-2">
-								<sf:checkbox path="is_hot" class="form-check-input" id="isHot" />
-								<label class="form-check-label" for="isHot">Is Hot Product?</label>
-							</div>
-	
-							<div class="form-group mb-2">
-								<label for="fileProductAvatar">Avatar</label> 
-								<input id="fileProductAvatar" name="productAvatar" type="file" class="form-control">
-							</div>
-							
-							<div class="form-group">
-								<img alt="" style="width: 100px; height: 100px;" src="${base }/upload/product/avatar/${product.avatar}">
-							</div>
-	
-							<div class="form-group mb-2">
-								<label for="fileProductPictures">Picture(Multiple)</label> 
-								<input id="fileProductPictures" name="productPictures" type="file" class="form-control" multiple="multiple">
-							</div>
-							
-							<div class="form-group">
-								<c:forEach items="${product.productImages }" var="productImage">
-									<img alt="" style="width: 100px; height: 100px;" src="${base }/upload/product/pictures/${productImage.path}">
-								</c:forEach>
-							</div>
-						
-            <a href="${base}/admin/admin_viewProducts" class="btn btn-secondary active" role="button" aria-pressed="true">Back to list</a>
-			<button type="submit" class="btn btn-primary">Save Product</button>
+								<label for="name">Name</label>
+								<sf:input path="name" autocomplete="off" type="text" class="form-control" id="name" placeholder="name" required="required"></sf:input>
+						   </div>
+				
+            <a href="${base}/admin/admin_viewCategory" class="btn btn-secondary active" role="button" aria-pressed="true">Back to list</a>
+			<button type="submit" class="btn btn-primary">Save Category</button>
 			<div class="form-row">
 				<div class="form-group col-sm-6">
-					<c:if test="${not empty messageProduct }">
-						<div class="alert alert-primary" role="alert">${messageProduct }</div>
+					<c:if test="${not empty message }">
+						<div class="alert alert-primary" role="alert">${message}</div>
 					</c:if>
 				</div>
 
 			</div>
+							
 			</sf:form>
 
 		<jsp:include page="/WEB-INF/views/customer/footer.jsp"></jsp:include>

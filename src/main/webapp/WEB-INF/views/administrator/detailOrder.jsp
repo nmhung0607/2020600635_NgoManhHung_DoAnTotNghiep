@@ -14,13 +14,38 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Admin View Contact</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../css/administrator.css'>
-    <script src='main.js'></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='${base}/css/administrator.css'>
+    <script src='${base}/js/main.js'></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${base}/css/simplePagination.css">
 </head>
+<style>
+    /* CSS cho h2 */
+    h2 {
+        font-size: 24px;
+        color: #333; /* Màu chữ */
+        margin-bottom: 10px;
+    }
+
+    /* Kiểu cho thông tin khách hàng */
+    .customer-info {
+        margin-bottom: 20px;
+    }
+
+    .customer-info h3 {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .customer-info h4 {
+        font-size: 16px;
+        color: #777;
+        margin-bottom: 5px;
+    }
+</style>
 <body>
     <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
@@ -64,64 +89,53 @@
 		</div>
 	</div>
 </nav>
-<form action="${base }/admin/admin_viewOrder" class="form-inline"
-			method="get">
-			<div class="d-flex flex-row justify-content-between mt-4">
-				<div class="d-flex flex-row">
-				<input name="page" id="page" class="form-control" style="display:none">
-					<!-- tìm kiếm theo tên sản phẩm -->
-					<input type="text" id="keyword" name="keyword" class="form-control"
-						placeholder="Search" style="margin-right: 5px;" value="${searchModel.keyword}">
-                    <select class="form-control" name="orderAddress" id="orderAddress"
-						style="margin-right: 5px;" value="${searchModel.orderAddress}">
-						<option value="0">Địa chỉ</option>
-						<c:forEach items="${saleOrders}" var="s">
-							<option value="${s.customerAddress}">${s.customerAddress }</option>
-						</c:forEach>
-					</select>
-					<!-- tìm kiếm theo danh mục sản phẩm -->
-					<button type="submit" id="btnSearch" name="btnSearch"
-						value="Search" class="btn btn-primary">Seach</button>
-				</div>
-			</div>
+   <h2>Thông tin khách hàng</h2>
+<div class="customer-info">
+    <label>Tên khách hàng </label>
+    <h3>${order.customerName}</h3>
+    <label>Email</label>
+    <h4>${order.customerEmail}</h4>
+    <label>Số điện thoại</label>
+    <h4>${order.customerPhone}</h4>
+    <label>Địa chỉ</label>
+    <h4>${order.customerAddress}</h4>
+</div>
+
+<h2>Danh sách sản phẩm đơn hàng</h2>
      <table border="1" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Mã đơn hàng</th>
-                    <th scope="col">Mã hàng</th>
-                    <th scope="col">Số lượng</th>
+                    <th scope="col">Hình ảnh</th>
                     <th scope="col">Tên hàng</th>
+                    <th scope="col">Số lượng</th>
                     <th scope="col">Giá tiền</th>
                     <th scope="col">Action</th>
     
                 </tr>
             </thead>
-        <c:forEach var="c" items="${orderList.data}" varStatus="loop">
+       
             <tbody>
-                <tr>
-                    <td>${c.id}</td>
-                    <td>${c.getSaleOrder().getCode()}</td>
-                    <td>${c.getProduct().getId()}</td>
-                    <td>${c.quality}</td>
-                    <td>${c.name}</td>
-                    <td>${c.totalPrice}</td>
-                    <td><a href="${base}/admin/adminViewOrderDetails/${c.getSaleOrder().getId()}">Chi tiết</a>  </td>
-                   
-                </tr>
+                <c:forEach var="product" items="${orderProducts}">
+        <tr>
+            <td>${product.getProduct().getId()}</td>
+            <td><img alt="" style="width: 100px; height: 100px;"
+								src="${base }/upload/${product.getProduct().getAvatar()}"></td> 
+            <td>${product.getProduct().getTitle()}</td>
+            <td>${product.quality}</td>
+            <td><fmt:setLocale value="vi_VN" scope="session" /> <fmt:formatNumber
+									value="${product.getProduct().getPrice()}" type="currency" /></td>
+            <td><a href="${base}/admin/adminViewOrderDetails/${product.saleOrder.id}">Chi tiết</a></td>
+        </tr>
+       
+    </c:forEach>
             </tbody>
 
-        </c:forEach>
-        
+  
+        <label>Tổng số tiền :</label> <fmt:setLocale value="vi_VN" scope="session" /> <fmt:formatNumber
+									value="${order.total}" type="currency" /></p>
         </table>
-            <div class="row">
-				<div class="col-12 d-flex justify-content-center">
-					<div id="paging"></div>
-				</div>
-		     </div>
-		</form>
-		
-		<jsp:include page="/WEB-INF/views/customer/footer.jsp"></jsp:include>
+		</div>
     </div>
     <script src="${base}/js/jquery-3.6.0.min.js"></script>
 	<script src="${base}/js/jquery.simplePagination.js"></script>

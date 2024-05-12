@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -54,4 +55,12 @@ public class SaleOrderProductsServices extends BaseService<SaleOrderProducts>  {
 		// TODO Auto-generated method stub
 		return SaleOrderProducts.class;
 	}
+	public List<SaleOrderProducts> findBySaleOrder(SaleOrder saleOrder) {
+        TypedQuery<SaleOrderProducts> query = entityManager.createQuery(
+            "SELECT sop FROM SaleOrderProducts sop WHERE sop.saleOrder = :saleOrder", 
+            SaleOrderProducts.class
+        );
+        query.setParameter("saleOrder", saleOrder);
+        return query.getResultList();
+    }
 }
