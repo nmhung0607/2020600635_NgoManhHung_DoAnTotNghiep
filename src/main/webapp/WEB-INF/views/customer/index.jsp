@@ -18,6 +18,7 @@
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="${base}/font/fontawesome-free-6.1.1-web/css/all.css">
 <link rel='stylesheet' type='text/css' media='screen'
 	href="${base}/css/simplePagination.css">
 <link rel='stylesheet' type='text/css' media='screen'
@@ -84,9 +85,10 @@
 									<div class="col mb-5">
 										<div class="card h-100">
 											<!-- Sale badge-->
+											 
 											<div class="badge bg-dark text-white position-absolute"
-												style="top: 1.2rem; right: 1.2rem">Sale</div>
-
+												style="top: 1.2rem; right: 1.2rem">${giamgia[loop.index+1] }</div>
+                                          
 											<!-- Product image-->
 											<img src="${base}/upload/${c.avatar}" class="card-img-top"
 												alt="...">
@@ -101,7 +103,7 @@
 													</h5>
 													<!-- Product price-->
 													<fmt:setLocale value="vi_VN" />
-													<span class="text-muted text-decoration-line-through">
+													<span class="text-muted" style="text-decoration:line-through;">
 														<fmt:formatNumber value="${c.price}" type="currency" />
 													</span>
 													<fmt:formatNumber value="${c.price_sale}" type="currency" />
@@ -113,7 +115,7 @@
 											<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 												<div class="text-center">
 													<a class="btn btn-outline-dark mt-auto" href="#"
-														onclick="AddToCart('${base}',${c.id}, 1)">Add to cart</a>
+														onclick="AddToCart('${base}',${c.id}, 1)"><i class="fa-solid fa-cart-shopping"></i>  Add to cart</a>
 												</div>
 											</div>
 										</div>

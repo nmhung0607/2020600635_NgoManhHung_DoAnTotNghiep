@@ -67,7 +67,7 @@ public class CartController extends Base_Controller {
 		// lấy giỏ hàng
 		HttpSession session = request.getSession();
 		Cart cart = (Cart) session.getAttribute("cart");
-		
+		BigDecimal total= BigDecimal.ZERO;
 		// lấy sản phẩm trong giỏ hàng
 		for (CartItem cartItem : cart.getCartItems()) {
 			BigDecimal productTotalPrice = productService.getById(cartItem.getProductId()).getPrice().multiply(BigDecimal.valueOf(cartItem.getQuanlity()));
@@ -77,10 +77,11 @@ public class CartController extends Base_Controller {
 			saleOrderProducts.setQuality(cartItem.getQuanlity());
             saleOrderProducts.setName(cartItem.getProductName());
             saleOrderProducts.setTotalPrice(productTotalPrice);
+            total= total.add(productService.getById(cartItem.getProductId()).getPrice().multiply(BigDecimal.valueOf(cartItem.getQuanlity())));
 			// sử dụng hàm tiện ích  add hoặc remove đới với các quan hệ onetomany
 			saleOrder.addSaleOrderProducts(saleOrderProducts);
 		}
-		
+		saleOrder.setTotal(total);
 		// lưu vào database
 		saleOrderService.saveOrUpdate(saleOrder);
 		model.addAttribute("thongbao", "Cảm ơn bạn đã mua hàng");

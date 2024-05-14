@@ -109,20 +109,20 @@
 						<div class="p-4">
 							<div class="form-group" style="margin-bottom: 5px;">
 								<label for="customerPhone">Customer full name</label>
-								<input type="text" class="form-control" id="customerFullName" name="customerFullName" value="${userLogined.username}" placeholder="Full name">
+								<input type="text" class="form-control" id="customerFullName" name="customerFullName" value="${userLogined.username}" placeholder="Full name" required>
 							</div>
 							<div class="form-group" style="margin-bottom: 5px;">
 								<label for="customerEmail">Email address</label>
-								<input type="email" class="form-control" id="customerEmail" name="customerEmail" value="${userLogined.email }" placeholder="Enter email">
+								<input type="email" class="form-control" id="customerEmail" name="customerEmail" value="${userLogined.email }" placeholder="Enter email" required>
 								<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 							</div>
 							<div class="form-group" style="margin-bottom: 5px;">
 								<label for="customerPhone">Phone</label>
-								<input type="tel" class="form-control" id="customerPhone" name="customerPhone" placeholder="Phone" value="${userLogined.phone}">
+								<input type="tel" class="form-control" id="customerPhone" name="customerPhone" placeholder="Phone" value="${userLogined.phone}" required>
 							</div>
 							<div class="form-group" style="margin-bottom: 5px;">
 								<label for="customerAddress">Address</label>
-								<input type="text" class="form-control" id="customerAddress" name="customerAddress" placeholder="Address" value="${userLogined.shipping_address}">
+								<input type="text" class="form-control" id="customerAddress" name="customerAddress" placeholder="Address" value="${userLogined.shipping_address}" required>
 							</div>
 						</div>
 					</div>

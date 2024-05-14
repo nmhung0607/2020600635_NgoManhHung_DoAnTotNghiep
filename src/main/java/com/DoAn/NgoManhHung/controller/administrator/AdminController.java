@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +50,8 @@ import com.DoAn.NgoManhHung.services.SaleOrderProductsServices;
 import com.DoAn.NgoManhHung.services.SaleOrderService;
 import com.DoAn.NgoManhHung.services.UserService;
 import com.DoAn.NgoManhHung.services.categoriesService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysql.cj.protocol.Resultset;
 
 @Controller
@@ -191,16 +194,26 @@ public class AdminController extends Base_Controller {
         
 	    // Truy vấn danh sách các sản phẩm đã đặt trong đơn hàng
 	    List<SaleOrderProducts> orderProducts = saleOrderProductService.findBySaleOrder(order);
-	    BigDecimal total= BigDecimal.ZERO;
-	    for (SaleOrderProducts product:orderProducts) {
-	    	total= total.add(product.getTotalPrice());
-	    }
-	    order.setTotal(total);
 	    // Đặt thông tin đơn đặt hàng và danh sách sản phẩm vào model
 	    model.addAttribute("order", order);
 	    model.addAttribute("orderProducts", orderProducts);
 
 	    return "administrator/detailOrder";
 	}
+	@RequestMapping(value = { "admin/doanhso" }, method = RequestMethod.GET)
+	public String showRevenueChart(Model model) {
+        List<Date> dates = saleOrderService.getDate();
+        List<BigDecimal> revenues = saleOrderService.getRevenue();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String datesJson = mapper.writeValueAsString(dates);
+            String revenuesJson = mapper.writeValueAsString(revenues);
+            model.addAttribute("dates", datesJson);
+            model.addAttribute("revenues", revenuesJson);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return "administrator/thongke";
+    }
 	
 }

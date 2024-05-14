@@ -1,6 +1,7 @@
 package com.DoAn.NgoManhHung.model;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +29,7 @@ public class SaleOrder extends BaseEntity {
 
 	@Column(name = "customer_address")
 	private String customerAddress;
-
+     
 	@Column(name = "customer_phone")
 	private String customerPhone;
 

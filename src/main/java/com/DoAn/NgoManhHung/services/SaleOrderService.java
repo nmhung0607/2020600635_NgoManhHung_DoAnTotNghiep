@@ -1,5 +1,13 @@
 package com.DoAn.NgoManhHung.services;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -10,11 +18,26 @@ import com.DoAn.NgoManhHung.model.SaleOrder;
 
 @Service
 public class SaleOrderService extends BaseService<SaleOrder> {
+	@PersistenceContext
+    private EntityManager entityManager;
 	@Override
 	protected Class<SaleOrder> clazz() {
 		return SaleOrder.class;
 	}
-
+	public List<Date> getDate() {
+		String sql ="SELECT DISTINCT DATE(s.created_date) FROM tbl_sale_orders s";
+		Query query = entityManager.createNativeQuery(sql);
+		List<Date> dates = query.getResultList();
+        return dates;
+	}
+	public List<BigDecimal> getRevenue() {
+        String sql = "SELECT SUM(s.total) AS totalRevenue " +
+                     "FROM tbl_sale_orders s " +
+                     "GROUP BY DATE(s.created_date)";
+        Query query = entityManager.createNativeQuery(sql);
+        List<BigDecimal> results = query.getResultList();
+        return results;
+    }
 	public PagerData<SaleOrder> search(OderSearchModel searchModel) {
 
 		// khởi tạo câu lệnh

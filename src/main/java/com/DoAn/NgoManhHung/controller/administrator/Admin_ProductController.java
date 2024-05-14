@@ -2,6 +2,7 @@ package com.DoAn.NgoManhHung.controller.administrator;
 
 import java.io.File;
 
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -27,8 +28,10 @@ import com.DoAn.NgoManhHung.controller.Base_Controller;
 import com.DoAn.NgoManhHung.model.Categories;
 import com.DoAn.NgoManhHung.model.Contact;
 import com.DoAn.NgoManhHung.model.Products;
+import com.DoAn.NgoManhHung.model.SaleOrder;
 import com.DoAn.NgoManhHung.services.PagerData;
 import com.DoAn.NgoManhHung.services.ProductService;
+import com.DoAn.NgoManhHung.services.SaleOrderService;
 import com.DoAn.NgoManhHung.services.categoriesService;
 import com.github.slugify.Slugify;
 import com.DoAn.NgoManhHung.dto.ProductSearchModel;
@@ -39,6 +42,8 @@ public class Admin_ProductController extends Base_Controller{
      private ProductService productService;
      @Autowired
      private categoriesService catSer;
+     @Autowired
+     private SaleOrderService saleService;
      @RequestMapping(value = { "admin/admin_addProduct" }, method = RequestMethod.GET)
  	 public String defaultViewAddProducts(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
     	model.addAttribute("product",new Products());
@@ -118,4 +123,5 @@ public class Admin_ProductController extends Base_Controller{
 		model.addAttribute("searchModel", searchModel);
 		return "administrator/admin_viewProducts";
 	}
+    
 }

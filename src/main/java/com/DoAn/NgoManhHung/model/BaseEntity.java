@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import org.springframework.data.annotation.CreatedDate;
+
 @MappedSuperclass
 public abstract class BaseEntity {
 
@@ -29,7 +31,7 @@ public abstract class BaseEntity {
 
 	@Column(name = "created_date", nullable = true)
 	private Date createdDate;
-
+    
 	@Column(name = "updated_date", nullable = true)
 	private Date updatedDate;
 

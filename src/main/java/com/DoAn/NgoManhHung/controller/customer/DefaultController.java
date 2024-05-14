@@ -2,7 +2,10 @@ package com.DoAn.NgoManhHung.controller.customer;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -58,6 +61,18 @@ public class DefaultController extends Base_Controller{
 		searchModel.setSort_by(request.getParameter("sort_by"));
 		searchModel.setPage(getCurrentPage(request));
 		PagerData<Products> pdProducts = productService.sort(searchModel);
+		List<Products> productsList = pdProducts.getData();
+		List<BigDecimal> discountPercentages = new ArrayList<>();// Lấy danh sách sản phẩm từ PagerData
+		for (Products product : productsList) {
+		    BigDecimal price = product.getPrice(); // Lấy giá của sản phẩm
+		    BigDecimal priceSale = product.getPrice_sale();
+		    BigDecimal discountPercentage = price.subtract(priceSale)
+                    .divide(price, 2, RoundingMode.HALF_UP)
+                    .multiply(BigDecimal.valueOf(100));
+		    discountPercentages.add(discountPercentage);
+		    // Tiến hành xử lý với giá và giá giảm ở đây
+		}
+		model.addAttribute("giamgia",discountPercentages);
 		model.addAttribute("pdProducts", pdProducts);
 		model.addAttribute("searchModel", searchModel);
     	return "customer/index"; //WEB-INF/views/customer/index.jsp

@@ -16,48 +16,65 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='${base}/css/administrator.css'>
     <script src='${base}/js/main.js'></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" type="text/css" href="${base}/font/fontawesome-free-6.1.1-web/css/all.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${base}/css/simplePagination.css">
 </head>
 <style>
-    /* CSS cho h2 */
-    h2 {
-        font-size: 24px;
-        color: #333; /* Màu chữ */
-        margin-bottom: 10px;
-    }
+        .customer-info {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 10px auto;
+            font-family: Arial, sans-serif;
+        }
 
-    /* Kiểu cho thông tin khách hàng */
-    .customer-info {
-        margin-bottom: 20px;
-    }
+        .customer-info > div {
+            flex: 1 1 50%; /* Chia đôi màn hình */
+            padding: 10px;
+        }
 
-    .customer-info h3 {
-        font-size: 18px;
-        color: #555;
-        margin-bottom: 5px;
-    }
+        .customer-info label {
+            font-weight: bold;
+            color: #333;
+        }
 
-    .customer-info h4 {
-        font-size: 16px;
-        color: #777;
-        margin-bottom: 5px;
-    }
-</style>
+        .customer-info h3, 
+        .customer-info h4 {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #555;
+        }
+
+        .customer-info h3 {
+            font-size: 1.5em;
+            color: #007bff;
+        }
+
+        .customer-info h4 {
+            font-size: 1.2em;
+        }
+    </style>
 <body>
     <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">ADMIN</div>
+                <div class="sidebar-heading border-bottom bg-light "><i class="fa-solid fa-user-tie"></i>   ADMIN</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewCategory"">Danh mục</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewProducts">Sản phẩm</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewOrder">Đơn hàng</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewAccount"">Profile</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewContact">Contact</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/doanhso"><i class="fa-solid fa-chart-simple"></i>   Dashboard</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="${base }/admin/admin_viewCategory"> <i class="fa-solid fa-list"></i>   Danh mục</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewProducts"><i class="fa-solid fa-bag-shopping"></i>   Sản phẩm</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewOrder"><i class="fa-solid fa-dollar-sign"></i>   Đơn hàng</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewAccount""><i class="fa-solid fa-user"></i>   Profile</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewContact"><i class="fa-solid fa-message"></i>   Contact</a>
                 </div>
             </div>
             
@@ -89,17 +106,24 @@
 		</div>
 	</div>
 </nav>
-   <h2>Thông tin khách hàng</h2>
-<div class="customer-info">
-    <label>Tên khách hàng </label>
-    <h3>${order.customerName}</h3>
-    <label>Email</label>
-    <h4>${order.customerEmail}</h4>
-    <label>Số điện thoại</label>
-    <h4>${order.customerPhone}</h4>
-    <label>Địa chỉ</label>
-    <h4>${order.customerAddress}</h4>
-</div>
+  <div class="customer-info">
+        <div>
+            <label>Tên khách hàng</label>
+            <h3>${order.customerName}</h3>
+        </div>
+        <div>
+            <label>Email</label>
+            <h4>${order.customerEmail}</h4>
+        </div>
+        <div>
+            <label>Số điện thoại</label>
+            <h4>${order.customerPhone}</h4>
+        </div>
+        <div>
+            <label>Địa chỉ</label>
+            <h4>${order.customerAddress}</h4>
+        </div>
+    </div>
 
 <h2>Danh sách sản phẩm đơn hàng</h2>
      <table border="1" class="table table-striped table-bordered table-hover">
