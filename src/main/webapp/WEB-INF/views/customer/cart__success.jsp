@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Shop Homepage - Start Bootstrap Template</title>
+<title>Thank you</title>
 
 <!-- COMMON -->
 <jsp:include page="/WEB-INF/views/common/variables.jsp"></jsp:include>
@@ -79,7 +79,7 @@
 				</div>
 				<h1>Success</h1>
 				<p>
-					We received your purchase request;<br /> we'll be in touch shortly!
+					Cảm ơn bạn đã đặt hàng, đơn hàng của bạn sẽ được vận chuyển trong vòng 7 ngày , vui lòng để ý số điện thoại;<br /> Mọi thắc mắc xin liên hệ 0966429003!
 				</p>
 			</div>
 

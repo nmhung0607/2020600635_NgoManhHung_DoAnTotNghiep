@@ -14,6 +14,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Details</title>
+    <style>
+    .product-container {
+    display: flex; /* Sử dụng Flexbox */
+    flex-wrap: wrap; /* Cho phép các sản phẩm xuống dòng khi không còn không gian */
+    justify-content: space-between; /* Các sản phẩm sẽ được căn cách đều nhau */
+}
+
+.related-product-images {
+    width: calc(33.33% - 20px); /* Độ rộng của mỗi sản phẩm */
+    margin: 10px; /* Khoảng cách giữa các sản phẩm */
+}
+
+.img-container {
+    position: relative;
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+}
+
+.name-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+}
+
+.name-container p {
+    margin: 0;
+}
+
+.text-muted {
+    text-decoration: line-through; /* Gạch chân giá gốc */
+    color: #999; /* Màu chữ của giá gốc */
+    margin-right: 5px; /* Khoảng cách với giá giảm giá */
+}
+
+.price-sale {
+    color: #ff0000; /* Màu chữ của giá giảm giá */
+    font-weight: bold; /* Đậm chữ của giá giảm giá */
+}
+</style>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -59,9 +104,9 @@
           <h2>${product.title }</h2>
         
           <div class="price">
-            <p class="new-price"><fmt:formatNumber value="${product.price}" type="currency" /></p>
+            <p class="new-price"><fmt:formatNumber value="${product.price_sale}" type="currency" /></p>
             <p class="old-price" style="text-decoration: line-through">
-             <fmt:formatNumber value="${product.price_sale}" type="currency" />
+             <fmt:formatNumber value="${product.price}" type="currency" />
             </p>
           </div>
           <p class="color">Mô tả</p>
@@ -70,7 +115,7 @@
           </p>
 												<div class="text-center">
 													<a class="btn btn-outline-dark mt-auto" href="#"
-														onclick="AddToCart('${base}',${product.id}, 1)">Add to cart</a>
+														onclick="AddToCart('${base}',${product.id}, 1)"><i class="fa-solid fa-cart-shopping"></i>Add to cart</a>
 												</div>
 									
           <p class="cat" style="font-weight: 600">Categories: ${product.getCategories().name}</p>
@@ -99,79 +144,19 @@
       <div class="related-product-container">
         <div class="related-product">
           <h3>Related Products</h3>
-          <div class="related-product-images">
+          <div class="product-container">
+    <c:forEach var="ci" items="${products}" varStatus="loop" begin="1" end="3">
+        <div class="related-product-images">
             <div class="img-container">
-              <img
-                src="./product_details_images/related_products/Rectangle 128.png"
-                alt=""
-              />
-              <div class="name-container">
-                <p class="name"><a href="">Top Wall Digital Clock</a></p>
-                <div class="stars">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+                <img src="${base }/upload/${ci.avatar}" alt=""/>
+                <div class="name-container">
+                    <p class="name fw-bolder"><a href="${base }/details/${ci.seo}">${ci.title }</a></p>
                 </div>
-              </div>
-              <p class="price">$51.00</p>
+               
             </div>
-
-            <div class="img-container">
-              <img
-                src="./product_details_images/related_products/Rectangle 130.png"
-                alt=""
-              />
-              <div class="name-container">
-                <p class="name"><a href="">Mens Fashion Wear</a></p>
-                <div class="stars">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-              </div>
-              <p class="price">$43.00</p>
-            </div>
-
-            <div class="img-container">
-              <img
-                src="./product_details_images/related_products/Rectangle 131.png"
-                alt=""
-              />
-              <div class="name-container">
-                <p class="name"><a href="">Women’s Fashion</a></p>
-                <div class="stars">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-              </div>
-              <p class="price">$67.00</p>
-            </div>
-
-            <div class="img-container">
-              <img
-                src="./product_details_images/related_products/Rectangle 133.png"
-                alt=""
-              />
-              <div class="name-container">
-                <p class="name"><a href="">Wolx Dummy Fashion</a></p>
-                <div class="stars">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                </div>
-              </div>
-              <p class="price">$67.00</p>
-            </div>
-          </div>
+        </div>
+    </c:forEach>
+</div>
 
           <div class="sponsor-bottom">
             <img src="login_images/sponsors.png" alt="" />

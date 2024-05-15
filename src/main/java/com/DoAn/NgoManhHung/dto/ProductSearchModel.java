@@ -9,7 +9,25 @@ public class ProductSearchModel extends BaseSearchModel{
 	private String sort_by;
 	private String categoryName;
 	private String orderAddress;
-    
+    private Double minValue;
+    private Double maxValue;
+
+	public Double getMinValue() {
+		return minValue;
+	}
+
+	public void setMinValue(Double minValue) {
+		this.minValue = minValue;
+	}
+
+	public Double getMaxValue() {
+		return maxValue;
+	}
+
+	public void setMaxValue(Double maxValue) {
+		this.maxValue = maxValue;
+	}
+
 	public String getOrderAddress() {
 		return orderAddress;
 	}

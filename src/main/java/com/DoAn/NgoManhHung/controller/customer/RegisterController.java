@@ -46,7 +46,7 @@ public class RegisterController {
     	registerService.registerNewUser(user);
 		registerService.saveOrUpdate(user);
 		model.addAttribute("user", new User());
-		return "customer/trang-chu";
+		return "customer/index";
 	}
     @Autowired
 	private UserDetailsServiceImpl userDetailsService;

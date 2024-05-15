@@ -14,6 +14,22 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>Trang chủ</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
+<style>
+label {
+    display: block; /* Hiển thị nhãn trên mỗi dòng */
+    margin-bottom: 5px; /* Khoảng cách giữa các nhãn */
+    font-weight: bold; /* Định dạng chữ đậm */
+}
+
+/* Định dạng trường nhập */
+.input-field {
+    width: 150px; /* Độ rộng của trường nhập */
+    padding: 8px; /* Khoảng cách bên trong trường nhập */
+    border: 1px solid #ccc; /* Viền của trường nhập */
+    border-radius: 5px; /* Độ cong của góc */
+    box-sizing: border-box; /* Tính cả kích thước padding và border vào kích thước */
+    margin-bottom: 10px; /* Khoảng cách giữa các trường nhập */
+}</style>
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 <link rel="stylesheet"
@@ -58,7 +74,8 @@
 					<div class="grid__columnn-10">
 						<form action="${base}/trang-chu" class="py-5" method="get">
 							<div class="home-filter">
-								<input id="page" name="page" class="form-control" type="hidden"> <input type="text" id="keyword"
+								<input id="page" name="page" class="form-control" type="hidden"> 
+								<input type="text" id="keyword"
 									name="keyword" class="form-control" placeholder="Search"
 									style="margin-right: 5px;" value="${searchModel.keyword}">
 								<span class="home-filter__label">Sắp xếp theo</span>
@@ -66,14 +83,21 @@
 								    <select class="form-control" name="sort_by" id="sort_by"
 						style="margin-right: 5px;" value="${searchModel.sort_by}">
 						<option value="${searchModel.sort_by}">All</option>
-						<option value="giathap">Giá : Thấp đến cao</option>
-						<option value="giacao">Giá : Cao đến thấp</option>
+						<option value="giathap">Giá : Cao đến thấp</option>
+						<option value="giacao">Giá : Thấp đến cao</option>
 					</select>
 									
 
-								</div>
+								</div> <br/>
+								<span class="home-filter__label">   Lọc theo giá</span>
+								<label for="minValue">Từ:</label>
+    <input type="number" id="minValue" name="minValue">
+
+    <label for="maxValue">Đến:</label>
+    <input type="number" id="maxValue" name="maxValue">
+
 								<button type="submit" id="btnSearch" name="btnSearch"
-									value="Search" class="btn btn-primary">Seach</button>
+									value="Search" class="btn btn-primary">Search</button>
 						</form>
 					</div>
 					<section>
@@ -103,7 +127,7 @@
 													</h5>
 													<!-- Product price-->
 													<fmt:setLocale value="vi_VN" />
-													<span class="text-muted" style="text-decoration:line-through;">
+													<span class="text-muted " style="text-decoration:line-through;">
 														<fmt:formatNumber value="${c.price}" type="currency" />
 													</span>
 													<fmt:formatNumber value="${c.price_sale}" type="currency" />

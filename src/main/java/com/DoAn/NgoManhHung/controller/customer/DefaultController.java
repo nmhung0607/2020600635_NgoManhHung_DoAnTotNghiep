@@ -60,19 +60,32 @@ public class DefaultController extends Base_Controller{
 		searchModel.setKeyword(request.getParameter("keyword"));
 		searchModel.setSort_by(request.getParameter("sort_by"));
 		searchModel.setPage(getCurrentPage(request));
-		PagerData<Products> pdProducts = productService.sort(searchModel);
-		List<Products> productsList = pdProducts.getData();
-		List<BigDecimal> discountPercentages = new ArrayList<>();// Lấy danh sách sản phẩm từ PagerData
-		for (Products product : productsList) {
-		    BigDecimal price = product.getPrice(); // Lấy giá của sản phẩm
-		    BigDecimal priceSale = product.getPrice_sale();
-		    BigDecimal discountPercentage = price.subtract(priceSale)
-                    .divide(price, 2, RoundingMode.HALF_UP)
-                    .multiply(BigDecimal.valueOf(100));
-		    discountPercentages.add(discountPercentage);
-		    // Tiến hành xử lý với giá và giá giảm ở đây
+		String minValueStr = request.getParameter("minValue");
+		String maxValueStr = request.getParameter("maxValue");
+
+		// Kiểm tra xem các giá trị có hợp lệ hay không và đặt chúng vào searchModel
+		if (minValueStr != null && !minValueStr.isEmpty()) {
+		        Double minValue = Double.parseDouble(minValueStr);
+		        searchModel.setMinValue(minValue);
+		   
 		}
-		model.addAttribute("giamgia",discountPercentages);
+		if (maxValueStr != null && !maxValueStr.isEmpty()) {
+		       Double maxValue = Double.parseDouble(maxValueStr);
+		        searchModel.setMaxValue(maxValue);
+		}
+		PagerData<Products> pdProducts = productService.sort(searchModel);
+//		List<Products> productsList = pdProducts.getData();
+//		List<BigDecimal> discountPercentages = new ArrayList<>();// Lấy danh sách sản phẩm từ PagerData
+//		for (Products product : productsList) {
+//		    BigDecimal price = product.getPrice(); // Lấy giá của sản phẩm
+//		    BigDecimal priceSale = product.getPrice_sale();
+//		    BigDecimal discountPercentage = price.subtract(priceSale)
+//                    .divide(price, 2, RoundingMode.HALF_UP)
+//                    .multiply(BigDecimal.valueOf(100));
+//		    discountPercentages.add(discountPercentage);
+//		    // Tiến hành xử lý với giá và giá giảm ở đây
+//		}
+//		model.addAttribute("giamgia",discountPercentages);
 		model.addAttribute("pdProducts", pdProducts);
 		model.addAttribute("searchModel", searchModel);
     	return "customer/index"; //WEB-INF/views/customer/index.jsp
@@ -133,7 +146,7 @@ public class DefaultController extends Base_Controller{
 		// lấy sản phẩm theo product seo 
 		Products product = productService.getEntityByNativeSQL("select * from tbl_products where seo='"+productSeo+"'");
 		model.addAttribute("product", product);
-		List<Products> products = productService.getEntitiesByNativeSQL("select *from tbl_products p where p.status=1");
+		List<Products> products = productService.getEntitiesByNativeSQL("select *from tbl_products p where p.status=1 and p.category_id  = " +product.getCategories().getId());
 		model.addAttribute("products", products);
 		List<ProductImages> productImg = productimgService.getEntitiesByNativeSQL("select *from tbl_product_images e where e.product_id = " +product.getId());
 		model.addAttribute("productImg", productImg);

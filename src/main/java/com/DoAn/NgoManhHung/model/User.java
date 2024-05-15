@@ -15,8 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
+import javax.validation.constraints.Email;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,11 +26,12 @@ public class User extends BaseEntity implements UserDetails{
 
 	@Column(name = "username", length = 45, nullable = false)
 	private String username;
-
+    
 	@Column(name = "password", length = 100, nullable = false)
 	private String password;
 
 	@Column(name = "email", length = 45, nullable = false)
+	@Email
 	private String email;
     @Column(name="phone" , length = 100,nullable = false)
     private String phone;

@@ -203,6 +203,13 @@ public class ProductService extends BaseService<Products>{
 						     " or p.details_des like '%" + searchModel.getKeyword() + "%'" + 
 						     " or p.short_des like '%" + searchModel.getKeyword() + "%')";
 			}
+			if (searchModel.getMinValue() != null && searchModel.getMaxValue() != null) {
+	            sql += " AND (p.price_sale BETWEEN " + searchModel.getMinValue() + " AND " + searchModel.getMaxValue() + ")";
+	        } else if (searchModel.getMinValue() != null) {
+	            sql += " AND p.price_sale >= " + searchModel.getMinValue();
+	        } else if (searchModel.getMaxValue() != null) {
+	            sql += " AND p.price_sale <= " + searchModel.getMaxValue();
+	        }
 			if (!StringUtils.isEmpty(searchModel.getSort_by())) {
 				if(searchModel.getSort_by().equals("giathap")) {
 					sql+=" ORDER BY p.price_sale DESC";
