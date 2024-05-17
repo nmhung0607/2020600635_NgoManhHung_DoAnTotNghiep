@@ -15,7 +15,7 @@
     <title>Admin View Contact</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../css/administrator.css'>
-    <script src='main.js'></script>
+    <script src='${base }/js/main.js'></script>
     <link rel="stylesheet" type="text/css" href="${base}/font/fontawesome-free-6.1.1-web/css/all.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 <link rel="stylesheet"

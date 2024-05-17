@@ -130,9 +130,9 @@
 	$(document).ready(function() {
 		$('#categoryId').val(${searchModel.categoryId});
 		$("#paging").pagination({
-			currentPage: ${orderList.currentPage}, //trang hiện tại
-	        items: ${orderList.totalItems},	//tổng số sản phẩm
-	        itemsOnPage: ${orderList.sizeOfPage}, //số sản phẩm trên 1 trang
+			currentPage: ${userList.currentPage}, //trang hiện tại
+	        items: ${userList.totalItems},	//tổng số sản phẩm
+	        itemsOnPage: ${userList.sizeOfPage}, //số sản phẩm trên 1 trang
 	        cssStyle: 'light-theme',
 	        onPageClick: function(pageNumber, event) {
 	        	$('#page').val(pageNumber);

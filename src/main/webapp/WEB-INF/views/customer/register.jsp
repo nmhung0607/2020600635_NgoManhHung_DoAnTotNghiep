@@ -13,6 +13,26 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Register Form</title>
+    <style>
+    .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+</style>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     	<link rel="stylesheet" type="text/css" href="${base}/font/fontawesome-free-6.1.1-web/css/all.css">
     <link rel='stylesheet' href="${base}/css/register.css"/>
@@ -27,7 +47,7 @@
                 <div class="signup-content">
                     <div class="signup-form">
                         <h2 class="form-title">Sign up</h2>
-                        <sf:form method="POST" class="register-form" id="register-form" action="${base}/register" modelAttribute="user">
+                        <sf:form method="POST" class="register-form" id="register-form" action="${base}/register" modelAttribute="user" onsubmit="return validatePasswords()">
                             <div class="form-group">
                                 <label for="name"><i class="fa-solid fa-user"></i></label>
                                 <sf:input type="text" path="username" id="name" placeholder="UserName"></sf:input>
@@ -47,6 +67,16 @@
                             <div class="form-group form-button">
                                 <button type="submit" name="signup" id="signup" class="form-submit">Register</button>
                             </div>
+                            <c:if test="${not empty message}">
+                               <div class="alert alert-success">
+                                ${message}
+                              </div>
+                              </c:if>
+                              <c:if test="${not empty errorMessage}">
+                              <div class="alert alert-danger">
+                                ${errorMessage}
+                              </div>
+                              </c:if>
                         </sf:form>
                     </div>
                     <div class="signup-image">
@@ -100,5 +130,16 @@
 
     </div>
     <script src='${base}/js/register.js'></script>
+    <script>
+    function validatePasswords() {
+        var password = document.getElementById("pass").value;
+        var repass = document.getElementById("re_pass").value;
+        if (password !== repass) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+     </script>
 </body>
 </html>

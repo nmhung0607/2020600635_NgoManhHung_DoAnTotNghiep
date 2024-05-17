@@ -3,6 +3,7 @@ package com.DoAn.NgoManhHung.model;
 import java.util.Collection;
 
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -37,6 +39,14 @@ public class User extends BaseEntity implements UserDetails{
     private String phone;
     @Column(name="shipping_address" , length = 1000,nullable = false)
     private String shipping_address;
+    @Transient
+    private String confirmPassword;
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
 	public String getPhone() {
 		return phone;
 	}

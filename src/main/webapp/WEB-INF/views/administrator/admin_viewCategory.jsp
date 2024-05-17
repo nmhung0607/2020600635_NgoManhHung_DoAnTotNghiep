@@ -21,6 +21,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="${base}/css/simplePagination.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="d-flex" id="wrapper">
@@ -127,28 +128,50 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
     function DeleteCategory(categoryId) {
-		// tạo javascript object.  
-		var data = {
-			id: categoryId,
-		};
-		
-		// $ === jQuery
-		// json == javascript object
-		jQuery.ajax({
-			url:  '${base}' + "/admin/category/delete",
-			type: "post",					
-			contentType: "application/json",
-			data: JSON.stringify(data),
+    	Swal.fire({
+            title: 'Bạn có chắc chắn?',
+            text: "Bạn sẽ không thể hoàn tác hành động này!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa!',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // tạo javascript object.
+                var data = {
+                    id: categoryId,
+                };
 
-			dataType: "json",
-			success: function(jsonResult) {
-				location.reload();
-			},
-			error: function(jqXhr, textStatus, errorMessage) {
-				alert("error");
-			}
-		});
-	}
+                // $ === jQuery
+                // json == javascript object
+                jQuery.ajax({
+                    url:  '${base}' + "/admin/category/delete",
+                    type: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    success: function(jsonResult) {
+                        Swal.fire(
+                            'Đã xóa!',
+                            'Sản phẩm đã được xóa.',
+                            'success'
+                        ).then(() => {
+                            location.reload();
+                        });
+                    },
+                    error: function(jqXhr, textStatus, errorMessage) {
+                        Swal.fire(
+                            'Lỗi!',
+                            'Đã có lỗi xảy ra khi xóa sản phẩm.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+        }
 	$(document).ready(function() {
 		$('#categoryId').val(${searchModel.categoryId});
 		$("#paging").pagination({
