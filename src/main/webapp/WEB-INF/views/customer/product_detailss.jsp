@@ -15,49 +15,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Details</title>
     <style>
+    
     .product-container {
-    display: flex; /* Sử dụng Flexbox */
-    flex-wrap: wrap; /* Cho phép các sản phẩm xuống dòng khi không còn không gian */
-    justify-content: space-between; /* Các sản phẩm sẽ được căn cách đều nhau */
+  display: flex;
+  flex-wrap: wrap; /* Cho phép các sản phẩm xuống dòng khi không đủ không gian */
+}
+.carousel{
+  display:none;
+}
+.related-product-images {
+  width: calc(33.33% - 20px); /* 33.33% width cho mỗi ảnh sản phẩm và margin giữa các sản phẩm */
+  margin-bottom: 20px;
+}
+
+/* Điều chỉnh margin nếu sản phẩm cuối cùng trên mỗi hàng */
+.related-product-images:nth-child(3n+1) {
+  margin-right: 20px;
+}
+.hidden {
+    display: none;
+}
+/* Điều chỉnh chiều rộng của ảnh sản phẩm */
+.img-container img {
+  width: 100%; /* Chiều rộng tối đa của ảnh là 100% của phần tử cha */
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+.related-product-container {
+  margin-top: 20px;
+}
+
+.related-product {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.related-product h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.product-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 .related-product-images {
-    width: calc(33.33% - 20px); /* Độ rộng của mỗi sản phẩm */
-    margin: 10px; /* Khoảng cách giữa các sản phẩm */
+  width: calc(33.33% - 10px); /* 33.33% width cho mỗi ảnh sản phẩm */
+  margin-bottom: 20px;
 }
 
 .img-container {
-    position: relative;
+  position: relative;
+  overflow: hidden;
 }
 
 .img-container img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.img-container img:hover {
+  transform: scale(1.1);
 }
 
 .name-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.name-container a {
+   text-decoration:none!important;
+}
+.name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.name-container p {
-    margin: 0;
-}
-
-.text-muted {
-    text-decoration: line-through; /* Gạch chân giá gốc */
-    color: #999; /* Màu chữ của giá gốc */
-    margin-right: 5px; /* Khoảng cách với giá giảm giá */
-}
-
-.price-sale {
-    color: #ff0000; /* Màu chữ của giá giảm giá */
-    font-weight: bold; /* Đậm chữ của giá giảm giá */
-}
 </style>
     <link
       rel="stylesheet"
@@ -113,10 +155,13 @@
           <p class="des">
             ${product.short_description }
           </p>
-												<div class="text-center">
-													<a class="btn btn-outline-dark mt-auto" href="#"
-														onclick="AddToCart('${base}',${product.id}, 1)"><i class="fa-solid fa-cart-shopping"></i>Add to cart</a>
-												</div>
+          <div id="quantityDisplay">
+          <p class="product-des">
+            Số lượng sản phẩm : ${product.soluong }
+          </p></div>
+		<div class="text-center" id="addToCartSection">
+			<a class="btn btn-outline-dark mt-auto" href="#" onclick="AddToCart('${base}',${product.id}, 1)"><i class="fa-solid fa-cart-shopping"></i>Add to cart</a>
+		</div>
 									
           <p class="cat" style="font-weight: 600">Categories: ${product.getCategories().name}</p>
           <p class="tags" style="font-weight: 600">Tags:${product.getCategories().name}	</p>
@@ -157,10 +202,6 @@
         </div>
     </c:forEach>
 </div>
-
-          <div class="sponsor-bottom">
-            <img src="login_images/sponsors.png" alt="" />
-          </div>
         </div>
       </div>
     </div>
@@ -170,5 +211,20 @@
     <!-- footer -->
     <script src="${base}/js/scripts.js"></script>
     <jsp:include page="/WEB-INF/views/customer/layout/js.jsp"></jsp:include>
+    <script>
+    // Kiểm tra số lượng sản phẩm và ẩn hiện phần tử tương ứng
+    var quantity = ${product.soluong}; // Lấy số lượng sản phẩm từ biến JSP
+    var addToCartSection = document.getElementById("addToCartSection");
+    var quantityDisplay = document.getElementById("quantityDisplay");
+    if (quantity <= 0) {
+    	quantityDisplay.classList.add("hidden");
+    	var outOfStockMessage = document.createElement("p");
+        outOfStockMessage.textContent = "Hết hàng";
+        outOfStockMessage.style.fontWeight = "bold";
+        outOfStockMessage.style.color = "red";
+        addToCartSection.parentNode.insertBefore(outOfStockMessage, addToCartSection);
+        document.querySelector("#addToCartSection > a.btn").style.display = "none";// Thay đổi nội dung thành "Hết hàng"
+    }
+</script>
   </body>
 </html>

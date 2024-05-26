@@ -34,7 +34,9 @@
 	font-size: 40px;
 	margin-bottom: 10px;
 }
-
+.carousel{
+  display:none;
+}
 .cartsuccesscard p {
 	color: #404F5E;
 	font-family: "Nunito Sans", "Helvetica Neue", sans-serif;

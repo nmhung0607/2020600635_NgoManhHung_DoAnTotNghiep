@@ -48,7 +48,7 @@
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
+							<label class="label-checkbox100" id="remember-me" name="remember-me" for="ckb1">
 								Remember me
 							</label>
 						</div>
@@ -70,21 +70,6 @@
 					<div class="text-center p-t-46 p-b-20">
 						<a class="txt2" href="${base}/register">
 							Bạn chưa có tài khoản?Đăng kí ngay
-						</a>
-					</div>
-					<div class="text-center p-t-46 p-b-20">
-						<span class="txt2">
-							Hoặc đăng nhập bằng
-						</span>
-					</div>
-
-					<div class="login100-form-social flex-c-m">
-						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-							<i class="fa-brands fa-facebook" aria-hidden="true"></i>
-						</a>
-
-						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i class="fa-brands fa-google" aria-hidden="true"></i>
 						</a>
 					</div>
 				</form>

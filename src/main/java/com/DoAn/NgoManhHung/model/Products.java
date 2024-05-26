@@ -1,6 +1,7 @@
 package com.DoAn.NgoManhHung.model;
 
 import java.math.BigDecimal;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,11 +35,11 @@ public class Products extends BaseEntity {
 	@Column(name = "seo", length = 100, nullable = true)
 	private String seo;
 	@Column(name = "soluong",  nullable = false)
-	private String soluong;
-	public String getSoluong() {
+	private Integer soluong;
+	public Integer getSoluong() {
 		return soluong;
 	}
-	public void setSoluong(String soluong) {
+	public void setSoluong(Integer soluong) {
 		this.soluong = soluong;
 	}
 

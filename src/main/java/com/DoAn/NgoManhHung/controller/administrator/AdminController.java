@@ -2,12 +2,13 @@ package com.DoAn.NgoManhHung.controller.administrator;
 
 import java.io.File;
 
+
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.security.Principal;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.DoAn.NgoManhHung.controller.Base_Controller;
 import com.DoAn.NgoManhHung.dto.CategorySearchModel;
@@ -52,7 +50,7 @@ import com.DoAn.NgoManhHung.services.UserService;
 import com.DoAn.NgoManhHung.services.categoriesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysql.cj.protocol.Resultset;
+
 
 @Controller
 
@@ -205,6 +203,17 @@ public class AdminController extends Base_Controller {
         List<Date> dates = saleOrderService.getDate();
         List<BigDecimal> revenues = saleOrderService.getRevenue();
         ObjectMapper mapper = new ObjectMapper();
+        Date currentDate = new Date(); 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+		String formattedDate = sdf.format(currentDate);
+        BigDecimal totalRevenueByDay=saleOrderService.getTotalRevenueByDate(formattedDate);
+        BigInteger totalOrderByDay = saleOrderService.getTotalOrderByDay(formattedDate);
+        model.addAttribute("totalOrderByDay", totalOrderByDay);
+        model.addAttribute("totalRevenueByDay", totalRevenueByDay);
+        BigDecimal totalRevenue = saleOrderService.getTotalRevenue();
+        model.addAttribute("totalRevenue", totalRevenue);
+        BigInteger totalOrder = saleOrderService.getTotalOrder();
+        model.addAttribute("totalOrder", totalOrder);
         try {
             String datesJson = mapper.writeValueAsString(dates);
             String revenuesJson = mapper.writeValueAsString(revenues);

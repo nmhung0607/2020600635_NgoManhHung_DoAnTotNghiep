@@ -52,7 +52,9 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="${base}/trang-chu">NMH Store</a></div>
+						   <img
+								src="${base}/img/nmh.jpg" alt="" class="header__navbar-user-img">
+							<div class="logo"><a href="${base}/trang-chu">Store</a></div>
 						</div>
 					</div>
 
@@ -113,7 +115,7 @@
 									<li><a href="${base }/trang-chu">Home<i class="fas fa-chevron-down"></i></a></li>
 									<li class="hassubs">
 										<a href="#">Danh mục<i class="fas fa-chevron-down"></i></a>
-										<ul>
+										<ul class="category-grid">
 											<c:forEach items="${categories}" var="category">
 										<li class="category-item"><a class="category-item__link"
 											href="/danh-muc?categoryId=${category.id}" id ="categoryName"  title="${category.name}" value="${category.name}">${category.name}</a></li>
@@ -228,17 +230,17 @@
         <div class="carousel-inner">
 
             <!--Slide 1 thiết lập hiện thị đầu tiên .active-->
-            <div class="carousel-item active" >
-                <img class="d-block w-100 " src="${base }/img/slode.jpg" style="object-fit:cover;">
+            <div class="carousel-item active style="position: relative;"" >
+                <img class="d-block mx-auto" src="${base}/img/slide1.jpg" style="max-width: 100%; height: 400px;">
             </div>
 
             <!--Slide 2-->
             <div class="carousel-item">
-                <img class="d-block w-100" src="${base }/img/lenovo.jpg" style="object-fit:cover;">
+                <img class="d-block mx-auto" src="${base}/img/slide2.jpg" style="max-width: 100%; height: 400px;">
             </div>
             <!--Slide 3-->
             <div class="carousel-item">
-                <img class="d-block w-100" src="${base }/img/amdthng5.png" style="object-fit:cover;">
+                <img class="d-block mx-auto" src="${base}/img/slide5.jpg" style="max-width: 100%; height: 400px;">
             </div>
         </div>
         

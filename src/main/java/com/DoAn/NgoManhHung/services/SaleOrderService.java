@@ -1,19 +1,21 @@
 package com.DoAn.NgoManhHung.services;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.math.BigInteger;
+import java.util.Date;
+
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
-import com.DoAn.NgoManhHung.dto.ContactSearchModel;
 import com.DoAn.NgoManhHung.dto.OderSearchModel;
-import com.DoAn.NgoManhHung.model.Contact;
+
 import com.DoAn.NgoManhHung.model.SaleOrder;
 
 @Service
@@ -38,6 +40,41 @@ public class SaleOrderService extends BaseService<SaleOrder> {
         List<BigDecimal> results = query.getResultList();
         return results;
     }
+	public BigDecimal getTotalRevenue() {
+	    String sql = "SELECT SUM(s.total) AS totalRevenue FROM tbl_sale_orders s";
+	    // Tạo truy vấn từ EntityManager
+	    Query query = entityManager.createNativeQuery(sql);
+	    // Thực hiện truy vấn và lấy kết quả
+	    BigDecimal totalRevenue = (BigDecimal) query.getSingleResult();
+	    return totalRevenue;
+	}
+	public BigInteger getTotalOrder() {
+	    String sql = "SELECT COUNT(s.id) FROM tbl_sale_orders s";
+	    // Tạo truy vấn từ EntityManager
+	    Query query = entityManager.createNativeQuery(sql);
+	    // Thực hiện truy vấn và lấy kết quả
+	    BigInteger totalOrder = (BigInteger) query.getSingleResult();
+	    return totalOrder;
+	}
+	public BigInteger getTotalOrderByDay(String formattedDate) {
+	    String sql = "SELECT COUNT(s.id) FROM tbl_sale_orders s WHERE s.created_date= :date";
+	    
+	    // Tạo truy vấn từ EntityManager
+	    Query query = entityManager.createNativeQuery(sql);
+	    query.setParameter("date", formattedDate);
+	    // Thực hiện truy vấn và lấy kết quả
+	    BigInteger totalOrder = (BigInteger) query.getSingleResult();
+	    return totalOrder;
+	}
+	public BigDecimal getTotalRevenueByDate(String formattedDate) {
+	    String sql = "SELECT SUM(s.total) FROM tbl_sale_orders s WHERE s.created_date= :date";
+	    // Tạo truy vấn từ EntityManager
+	    Query query = entityManager.createNativeQuery(sql);
+	    query.setParameter("date", formattedDate);
+	    // Thực hiện truy vấn và lấy kết quả
+	    BigDecimal totalRevenueByDay = (BigDecimal) query.getSingleResult();
+	    return totalRevenueByDay;
+	}
 	public PagerData<SaleOrder> search(OderSearchModel searchModel) {
 
 		// khởi tạo câu lệnh
@@ -59,4 +96,23 @@ public class SaleOrderService extends BaseService<SaleOrder> {
 		return getEntitiesByNativeSQL(sql, searchModel.getPage());
 
 	}
+	private Date getStartOfDay(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return (Date) calendar.getTime();
+    }
+
+    private Date getEndOfDay(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
+        return (Date) calendar.getTime();
+    }
 }

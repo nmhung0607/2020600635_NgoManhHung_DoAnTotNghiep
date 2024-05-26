@@ -24,6 +24,25 @@
             width: 100%;
             height: 100%;
         }
+        .doanhso-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+
+.name {
+    flex: 1; 
+    text-align: center; 
+}
+
+.doanhthu, .sodonhang {
+    flex: 1;
+    text-align: center; 
+    margin: 0 10px; 
+}
     </style>
     <link rel='stylesheet' type='text/css' media='screen' href='../css/administrator.css'>
     <script src='main.js'></script>
@@ -77,7 +96,26 @@
 		</div>
 	</div>
 	</nav>
-		<h1>Doanh Số Theo Ngày</h1>
+	<div class="doanhso-container">
+	<div class="doanhthu">
+	     <label><i class="fa-solid fa-sack-dollar"></i>Tổng doanh thu hôm nay: </label>
+	      <fmt:formatNumber value="${totalRevenueByDay}" type="currency" />
+	    </div>
+	    <div class="sodonhang">
+	      <label><i class="fa-solid fa-bag-shopping"></i>Số đơn hàng hôm nay: </label>
+	        ${totalOrderByDay }
+	    </div>
+	    
+	    <div class="doanhthu">
+	     <label><i class="fa-solid fa-sack-dollar"></i>Tổng doanh thu: </label>
+	      <fmt:formatNumber value="${totalRevenue}" type="currency" />
+	    </div>
+	    <div class="sodonhang">
+	      <label><i class="fa-solid fa-bag-shopping"></i>Tổng số đơn hàng: </label>
+	        ${totalOrder }
+	    </div>
+	</div>
+		<h1>Chart Doanh Thu </h1>
     <div id="chartContainer">
     <!-- Đây là nơi bạn sẽ hiển thị biểu đồ -->
     <canvas id="revenueChart"></canvas>

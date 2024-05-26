@@ -56,7 +56,7 @@
 
         .customer-info h3 {
             font-size: 1.5em;
-            color: #007bff;
+            color: black;
         }
 
         .customer-info h4 {
@@ -134,7 +134,7 @@
                     <th scope="col">Tên hàng</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Giá tiền</th>
-                    <th scope="col">Action</th>
+                   
     
                 </tr>
             </thead>
@@ -149,7 +149,7 @@
             <td>${product.quality}</td>
             <td><fmt:setLocale value="vi_VN" scope="session" /> <fmt:formatNumber
 									value="${product.getProduct().getPrice()}" type="currency" /></td>
-            <td><a href="${base}/admin/adminViewOrderDetails/${product.saleOrder.id}">Chi tiết</a></td>
+          
         </tr>
        
     </c:forEach>

@@ -16,7 +16,10 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Cart</title>
-
+<style>
+.carousel{
+  display:none;
+}</style>
 <!-- COMMON -->
 <jsp:include page="/WEB-INF/views/common/variables.jsp"></jsp:include>
 

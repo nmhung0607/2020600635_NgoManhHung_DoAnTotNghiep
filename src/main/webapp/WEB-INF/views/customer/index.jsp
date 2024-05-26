@@ -15,6 +15,28 @@
 <title>Trang chủ</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <style>
+
+.grid__columnn-10 .home-filter input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #495057;
+    margin-top: 5px; /* Khoảng cách giữa các ô input */
+}
+.grid__columnn-10 .home-filter label {
+    display: block; /* Hiển thị mỗi label trên một dòng */
+    margin-bottom: 5px; /* Khoảng cách giữa các label */
+    font-weight: bold; /* Định dạng chữ in đậm */
+}
+/* Định dạng khi input được focus */
+.grid__columnn-10 .home-filter input[type="number"]:focus {
+    outline: none; /* Loại bỏ đường viền khi input được focus */
+    border-color: #80bdff; /* Màu viền khi input được focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Hiệu ứng shadow khi input được focus */
+}
 label {
     display: block; /* Hiển thị nhãn trên mỗi dòng */
     margin-bottom: 5px; /* Khoảng cách giữa các nhãn */
@@ -29,7 +51,9 @@ label {
     border-radius: 5px; /* Độ cong của góc */
     box-sizing: border-box; /* Tính cả kích thước padding và border vào kích thước */
     margin-bottom: 10px; /* Khoảng cách giữa các trường nhập */
-}</style>
+
+}
+</style>
 <link rel="stylesheet"
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 <link rel="stylesheet"
@@ -95,7 +119,6 @@ label {
 
     <label for="maxValue">Đến:</label>
     <input type="number" id="maxValue" name="maxValue">
-
 								<button type="submit" id="btnSearch" name="btnSearch"
 									value="Search" class="btn btn-primary">Search</button>
 						</form>

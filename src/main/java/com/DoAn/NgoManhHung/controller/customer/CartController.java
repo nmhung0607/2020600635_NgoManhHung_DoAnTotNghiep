@@ -70,6 +70,10 @@ public class CartController extends Base_Controller {
 		BigDecimal total= BigDecimal.ZERO;
 		// lấy sản phẩm trong giỏ hàng
 		for (CartItem cartItem : cart.getCartItems()) {
+			Products product = productService.getById(cartItem.getProductId());
+	        int orderedQuantity = cartItem.getQuanlity();
+	        product.setSoluong(product.getSoluong()-orderedQuantity);
+	        productService.saveOrUpdate(product);
 			BigDecimal productTotalPrice = productService.getById(cartItem.getProductId()).getPrice().multiply(BigDecimal.valueOf(cartItem.getQuanlity()));
 			SaleOrderProducts saleOrderProducts = new SaleOrderProducts();
 			saleOrderProducts.setSaleOrder(saleOrder);
