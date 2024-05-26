@@ -201,7 +201,9 @@ public class AdminController extends Base_Controller {
 	@RequestMapping(value = { "admin/doanhso" }, method = RequestMethod.GET)
 	public String showRevenueChart(Model model) {
         List<Date> dates = saleOrderService.getDate();
+        List<Date> months = saleOrderService.getMonth();
         List<BigDecimal> revenues = saleOrderService.getRevenue();
+        List<BigDecimal> revenuesMonth = saleOrderService.getRevenueByMonth();
         ObjectMapper mapper = new ObjectMapper();
         Date currentDate = new Date(); 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
@@ -219,6 +221,10 @@ public class AdminController extends Base_Controller {
             String revenuesJson = mapper.writeValueAsString(revenues);
             model.addAttribute("dates", datesJson);
             model.addAttribute("revenues", revenuesJson);
+            String monthsJson = mapper.writeValueAsString(months);
+            String revenuesMonthJson = mapper.writeValueAsString(revenuesMonth);
+            model.addAttribute("months", monthsJson);
+            model.addAttribute("revenuesMonth", revenuesMonthJson);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

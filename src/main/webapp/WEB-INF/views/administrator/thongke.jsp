@@ -32,7 +32,24 @@
     border: 1px solid #ccc; 
     border-radius: 5px;
 }
+.chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 20px;
+}
 
+.chart-container h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.chart-container #chartContainer {
+    width: 45%;
+    min-width: 400px; /* Đảm bảo rằng các container có kích thước tối thiểu */
+    margin-bottom: 20px;
+}
 .name {
     flex: 1; 
     text-align: center; 
@@ -115,10 +132,17 @@
 	        ${totalOrder }
 	    </div>
 	</div>
-		<h1>Chart Doanh Thu </h1>
+	<div class="chart-container" >
+		
     <div id="chartContainer">
     <!-- Đây là nơi bạn sẽ hiển thị biểu đồ -->
     <canvas id="revenueChart"></canvas>
+    </div>
+  
+    <div id="chartContainer">
+    <!-- Đây là nơi bạn sẽ hiển thị biểu đồ -->
+    <canvas id="revenueChartByMonth"></canvas>
+    </div>
     </div>
     <%-- Script Java để vẽ biểu đồ --%>
     <script>
@@ -151,6 +175,44 @@
             }
         });
     </script>
+    <script>
+    // Lấy dữ liệu từ model và truyền vào biến JavaScript
+    var months = ${months};
+    var revenuesMonth = ${revenuesMonth};
+    
+    // Chuyển đổi các tháng thành chuỗi ngày/tháng
+   months = months.map(month => {
+    var date = new Date(0);
+    date.setMonth(month - 1); // Giảm đi 1 vì tháng bắt đầu từ 0 (tháng 1)
+    return date.toLocaleDateString('vi-VN', { month: 'long' });
+});
+
+    // Tạo biểu đồ
+    var ctx = document.getElementById('revenueChartByMonth').getContext('2d');
+    var revenueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Doanh số theo các tháng (tính theo triệu vnđ)',
+                data: revenuesMonth,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
 		<jsp:include page="/WEB-INF/views/customer/footer.jsp"></jsp:include>
     </div>
     <script src="${base}/js/jquery-3.6.0.min.js"></script>

@@ -32,10 +32,24 @@ public class SaleOrderService extends BaseService<SaleOrder> {
 		List<Date> dates = query.getResultList();
         return dates;
 	}
+	public List<Date> getMonth() {
+		String sql ="SELECT DISTINCT MONTH(s.created_date) FROM tbl_sale_orders s";
+		Query query = entityManager.createNativeQuery(sql);
+		List<Date> dates = query.getResultList();
+        return dates;
+	}
 	public List<BigDecimal> getRevenue() {
         String sql = "SELECT SUM(s.total) AS totalRevenue " +
                      "FROM tbl_sale_orders s " +
                      "GROUP BY DATE(s.created_date)";
+        Query query = entityManager.createNativeQuery(sql);
+        List<BigDecimal> results = query.getResultList();
+        return results;
+    }
+	public List<BigDecimal> getRevenueByMonth() {
+        String sql = "SELECT SUM(s.total) AS totalRevenue " +
+                     "FROM tbl_sale_orders s " +
+                     "GROUP BY MONTH(s.created_date)";
         Query query = entityManager.createNativeQuery(sql);
         List<BigDecimal> results = query.getResultList();
         return results;
@@ -96,23 +110,4 @@ public class SaleOrderService extends BaseService<SaleOrder> {
 		return getEntitiesByNativeSQL(sql, searchModel.getPage());
 
 	}
-	private Date getStartOfDay(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-        return (Date) calendar.getTime();
-    }
-
-    private Date getEndOfDay(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        calendar.set(Calendar.MINUTE, 59);
-        calendar.set(Calendar.SECOND, 59);
-        calendar.set(Calendar.MILLISECOND, 999);
-        return (Date) calendar.getTime();
-    }
 }

@@ -15,6 +15,21 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>Admin</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
+<style>
+.btn-primary {
+    background-color: #007bff; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    border: none; /* Không có viền */
+    padding: 10px 20px; /* Kích thước đệm */
+    border-radius: 5px; /* Bo góc */
+    cursor: pointer; /* Con trỏ là pointer */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển đổi màu nền */
+}
+
+/* CSS khi di chuột vào nút */
+.btn-primary:hover {
+    background-color: #0056b3; /* Màu nền khi di chuột vào */
+}</style>
 <link rel='stylesheet' type='text/css' media='screen'
 	href='${base}/css/administrator.css'>
 	<link rel="stylesheet" type="text/css" href="${base}/font/fontawesome-free-6.1.1-web/css/all.css">
@@ -94,7 +109,7 @@
 								<sf:input path="name" autocomplete="off" type="text" class="form-control" id="name" placeholder="name" required="required"></sf:input>
 						
             <a href="${base}/admin/admin_viewCategory" class="btn btn-secondary active" role="button" aria-pressed="true">Back to list</a>
-			<button type="submit" class="btn btn-primary">Save Category</button>
+			<button type="submit" class="btn btn-primary" >Save Category</button>
 			<div class="form-row">
 				<div class="form-group col-sm-6">
 					<c:if test="${not empty message }">
@@ -117,5 +132,6 @@
 				$('#detail_description').summernote();
 			});
 		</script>
+		
 </body>
 </html>
