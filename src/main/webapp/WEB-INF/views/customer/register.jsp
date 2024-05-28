@@ -46,26 +46,26 @@
             <div class="container">
                 <div class="signup-content">
                     <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
+                        <h2 class="form-title">Đăng kí</h2>
                         <sf:form method="POST" class="register-form" id="register-form" action="${base}/register" modelAttribute="user" onsubmit="return validatePasswords()">
                             <div class="form-group">
                                 <label for="name"><i class="fa-solid fa-user"></i></label>
-                                <sf:input type="text" path="username" id="name" placeholder="UserName"></sf:input>
+                                <sf:input type="text" path="username" id="name" placeholder="Tên đăng nhập"></sf:input>
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="fa-solid fa-envelope"></i></label>
-                                <sf:input type="email" path="email" id="email" placeholder="Your Email"></sf:input>
+                                <sf:input type="email" path="email" id="email" placeholder="Email"></sf:input>
                             </div>
                             <div class="form-group">
                                 <label for="pass"><i class="fa-solid fa-key"></i></label>
-                                <sf:input type="password" path="password" id="pass" placeholder="Password"></sf:input>
+                                <sf:input type="password" path="password" id="pass" placeholder="Mật khẩu"></sf:input>
                             </div>
                             <div class="form-group">
                                 <label for="re-pass"><i class="fa-solid fa-key-skeleton"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                                <input type="password" name="re_pass" id="re_pass" placeholder="Nhập lại mật khẩu"/>
                             </div>
                             <div class="form-group form-button">
-                                <button type="submit" name="signup" id="signup" class="form-submit">Register</button>
+                                <button type="submit" name="signup" id="signup" class="form-submit">Đăng kí</button>
                             </div>
                             <c:if test="${not empty message}">
                                <div class="alert alert-success">

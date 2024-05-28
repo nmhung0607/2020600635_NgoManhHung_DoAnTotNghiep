@@ -36,12 +36,12 @@
              <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light "><i class="fa-solid fa-user-tie"></i>   ADMIN</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/doanhso"><i class="fa-solid fa-chart-simple"></i>   Dashboard</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/doanhso"><i class="fa-solid fa-chart-simple"></i>   Thống kê</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="${base }/admin/admin_viewCategory"> <i class="fa-solid fa-list"></i>   Danh mục</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewProducts"><i class="fa-solid fa-bag-shopping"></i>   Sản phẩm</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewOrder"><i class="fa-solid fa-dollar-sign"></i>   Đơn hàng</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewAccount""><i class="fa-solid fa-user"></i>   Profile</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewContact"><i class="fa-solid fa-message"></i>   Contact</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewAccount""><i class="fa-solid fa-user"></i>   Tài khoản</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewContact"><i class="fa-solid fa-message"></i>   Liên hệ</a>
                 </div>
             </div>
             
@@ -58,10 +58,10 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="${base }/admin/admin_viewProducts">Home</a></li>
+				<li class="nav-item active"><a class="nav-link" href="${base }/admin/admin_viewProducts">Thống kê</a></li>
 				
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
 					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 					
 						
@@ -70,7 +70,7 @@
 						</c:if>						
 						
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${base }/logout">Logout(${userLogined.username })</a>
+						<a class="dropdown-item" href="${base }/logout">Đăng xuất(${userLogined.username })</a>
 					</div>
 				</li>
 			</ul>
@@ -81,52 +81,50 @@
 			action="${base}/admin/admin_addProduct" method="POST"
 			enctype="multipart/form-data">
 			<div class="form-group mb-2">
-								<label for="productId">Product Id</label>
-								<sf:input path="id" id="productId" class="form-control"></sf:input>
 							</div>
 							
 							<div class="form-group mb-2">
-								<label for="category">Category (required)</label>
+								<label for="category">Danh mục (bắt buộc)</label>
 								<sf:select path="categories.id" class="form-control" id="category">
 									<sf:options items="${categories }" itemValue="id" itemLabel="name" />
 								</sf:select>
 							</div>
 							
 							<div class="form-group mb-2">
-								<label for="title">Title (required)</label>
+								<label for="title">Tên (bắt buộc)</label>
 								<sf:input path="title" autocomplete="off" type="text" class="form-control" id="title" placeholder="Title" required="required"></sf:input>
 							</div>
 							<div class="form-group mb-2">
-								<label for="price">Quanlity (required)</label>
+								<label for="price">Số lượng (bắt buộc)</label>
 								<sf:input type="number" autocomplete="off" path="soluong" class="form-control" id="soluong" placeholder="Quanlity" required="required"></sf:input>
 							</div>
 							<div class="form-group mb-2">
-								<label for="price">Price (required)</label>
+								<label for="price">Giá (bắt buộc)</label>
 								<sf:input type="number" autocomplete="off" path="price" class="form-control" id="price" placeholder="Price" required="required"></sf:input>
 							</div>
 							
 							<div class="form-group mb-2">
-								<label for="priceSale">Price Sale (required)</label>
+								<label for="priceSale">Giá giảm (bắt buộc)</label>
 								<sf:input type="number" autocomplete="off" path="price_sale" class="form-control" id="priceSale" placeholder="Price sale" required="required"></sf:input>
 							</div>
 							
 							<div class="form-group mb-2">
-								<label for="short_description">Description (required)</label>
+								<label for="short_description">Mô tả ngắn gọn (bắt buộc)</label>
 								<sf:textarea autocomplete="off" path="short_description" class="form-control summernote"  placeholder="Short Description" id="short_description" rows="3" required="required"></sf:textarea>
 							</div>
 							
 							<div class="form-group mb-2">
-								<label for="detail_description">Details (required)</label>
+								<label for="detail_description">Mô tả chi tiết (bắt buộc)</label>
 								<sf:textarea autocomplete="off" path="details" class="form-control summernote" id="detail_description" rows="3" required="required"></sf:textarea>
 							</div>
 							
 							<div class="form-group form-check mb-2">
 								<sf:checkbox path="is_hot" class="form-check-input" id="isHot" />
-								<label class="form-check-label" for="isHot">Is Hot Product?</label>
+								<label class="form-check-label" for="isHot">Sản phẩm bán chạy?</label>
 							</div>
 	
 							<div class="form-group mb-2">
-								<label for="fileProductAvatar">Avatar</label> 
+								<label for="fileProductAvatar">Hình ảnh</label> 
 								<input id="fileProductAvatar" name="productAvatar" type="file" class="form-control">
 							</div>
 							
@@ -135,7 +133,7 @@
 							</div>
 	
 							<div class="form-group mb-2">
-								<label for="fileProductPictures">Picture(Multiple)</label> 
+								<label for="fileProductPictures">Hình ảnh phụ</label> 
 								<input id="fileProductPictures" name="productPictures" type="file" class="form-control" multiple="multiple">
 							</div>
 							
@@ -145,8 +143,8 @@
 								</c:forEach>
 							</div>
 						
-            <a href="${base}/admin/admin_viewProducts" class="btn btn-secondary active" role="button" aria-pressed="true">Back to list</a>
-			<button type="submit" class="btn btn-primary">Save Product</button>
+            <a href="${base}/admin/admin_viewProducts" class="btn btn-secondary active" role="button" aria-pressed="true">Trở lại danh sách</a>
+			<button type="submit" class="btn btn-primary">Lưu sản phẩm</button>
 			<div class="form-row">
 				<div class="form-group col-sm-6">
 					<c:if test="${not empty messageProduct }">

@@ -79,7 +79,7 @@
 				<div style="border-radius: 200px; height: 200px; width: 200px; background: #F8FAF5; margin: 0 auto;">
 					<i class="checkmark">✓</i>
 				</div>
-				<h1>Success</h1>
+				<h1>Đặt hàng thành công</h1>
 				<p>
 					Cảm ơn bạn đã đặt hàng, đơn hàng của bạn sẽ được vận chuyển trong vòng 7 ngày , vui lòng để ý số điện thoại;<br /> Mọi thắc mắc xin liên hệ 0966429003!
 				</p>

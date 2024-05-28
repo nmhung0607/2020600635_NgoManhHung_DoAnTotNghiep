@@ -73,7 +73,7 @@
 
 								</div>
 								<button type="submit" id="btnSearch" name="btnSearch"
-									value="Search" class="btn btn-primary">Seach</button>
+									value="Search" class="btn btn-primary">Tìm kiếm</button>
 						</form>
 					</div>
 					<section>
@@ -114,7 +114,7 @@
 											<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 												<div class="text-center">
 													<a class="btn btn-outline-dark mt-auto" href="#"
-														onclick="AddToCart('${base}',${c.id}, 1)">Add to cart</a>
+														onclick="AddToCart('${base}',${c.id}, 1)">Thêm vào giỏ hàng</a>
 												</div>
 											</div>
 										</div>

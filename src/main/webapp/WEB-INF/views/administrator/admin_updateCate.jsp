@@ -53,15 +53,15 @@
 <body>
 	<div class="d-flex" id="wrapper">
             <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
+             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light "><i class="fa-solid fa-user-tie"></i>   ADMIN</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/doanhso"><i class="fa-solid fa-chart-simple"></i>   Dashboard</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/doanhso"><i class="fa-solid fa-chart-simple"></i>   Thống kê</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3 " href="${base }/admin/admin_viewCategory"> <i class="fa-solid fa-list"></i>   Danh mục</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewProducts"><i class="fa-solid fa-bag-shopping"></i>   Sản phẩm</a> 
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewOrder"><i class="fa-solid fa-dollar-sign"></i>   Đơn hàng</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewAccount""><i class="fa-solid fa-user"></i>   Profile</a> 
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewContact"><i class="fa-solid fa-message"></i>   Contact</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base }/admin/admin_viewAccount""><i class="fa-solid fa-user"></i>   Tài khoản</a> 
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="${base}/admin/admin_viewContact"><i class="fa-solid fa-message"></i>   Liên hệ</a>
                 </div>
             </div>
             
@@ -78,10 +78,10 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="${base }/admin/admin_viewProducts">Home</a></li>
+				<li class="nav-item active"><a class="nav-link" href="${base }/admin/admin_viewProducts">Thống kê</a></li>
 				
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
 					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 					
 						
@@ -90,7 +90,7 @@
 						</c:if>						
 						
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${base }/logout">Logout(${userLogined.username })</a>
+						<a class="dropdown-item" href="${base }/logout">Đăng xuất(${userLogined.username })</a>
 					</div>
 				</li>
 			</ul>
@@ -105,11 +105,11 @@
 								<sf:input path="id" id="categoryId" class="form-control" name="categoryId"></sf:input>
 							</div>
 							<div class="form-group mb-2">
-								<label for="name">Name</label>
+								<label for="name">Tên</label>
 								<sf:input path="name" autocomplete="off" type="text" class="form-control" id="name" placeholder="name" required="required"></sf:input>
 						
-            <a href="${base}/admin/admin_viewCategory" class="btn btn-secondary active" role="button" aria-pressed="true">Back to list</a>
-			<button type="submit" class="btn btn-primary" >Save Category</button>
+            <a href="${base}/admin/admin_viewCategory" class="btn btn-secondary active" role="button" aria-pressed="true">Trở về</a>
+			<button type="submit" class="btn btn-primary" >Lưu danh mục</button>
 			<div class="form-row">
 				<div class="form-group col-sm-6">
 					<c:if test="${not empty message }">

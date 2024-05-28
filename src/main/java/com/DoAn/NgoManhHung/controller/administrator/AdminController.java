@@ -112,7 +112,6 @@ public class AdminController extends Base_Controller {
 	public String defaultViewOrder(final Model model, final HttpServletRequest request, final HttpServletResponse response) {
 		OderSearchModel searchModel = new OderSearchModel();
 		searchModel.setKeyword(request.getParameter("keyword"));
-		searchModel.setOrderAddress(request.getParameter("orderAddress"));
 		searchModel.setPage(getCurrentPage(request));
 		PagerData<SaleOrderProducts> orderList= saleOrderProductService.search(searchModel);
 		model.addAttribute("orderList", orderList);

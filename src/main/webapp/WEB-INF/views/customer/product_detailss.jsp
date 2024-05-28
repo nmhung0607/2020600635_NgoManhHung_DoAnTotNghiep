@@ -175,12 +175,8 @@
       </div>
       <div class="product-information">
         <div class="attribute-container">
-          <div class="description-attribute"><a href="">Description</a></div>
-          <div class="additional-info-attribute">
-            <a href="">Additional Info</a>
-          </div>
-          <div class="reviews-attribute"><a href="">Reviews</a></div>
-          <div class="video-attribute"><a href="">Video</a></div>
+          <div class="description-attribute"><a href="">Mô tả chi tiết</a></div>
+          
         </div>
         <div class="various-tempor">
           ${product.details }
@@ -188,7 +184,7 @@
       </div>
       <div class="related-product-container">
         <div class="related-product">
-          <h3>Related Products</h3>
+          <h3>Sản phẩm liên qua</h3>
           <div class="product-container">
     <c:forEach var="ci" items="${products}" varStatus="loop" begin="1" end="3">
         <div class="related-product-images">

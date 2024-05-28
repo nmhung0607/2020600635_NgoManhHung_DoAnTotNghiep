@@ -23,8 +23,8 @@
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918647/user.svg" alt=""></div>
 								<c:if test="${!isLogined }">
-								<div><a href="${base}/register">Register</a></div>
-								<div><a href="${base}/login">Sign in</a></div>
+								<div><a href="${base}/register">Đăng kí</a></div>
+								<div><a href="${base}/login">Đăng nhập</a></div>
 								</c:if>
 								<c:if test="${isLogined}">
 							    <li class="header__navbar-item header__navbar-user"><img
@@ -64,7 +64,7 @@
 							<div class="header_search_content">
 								<div class="header_search_form_container">
 									<form action="${base }/trang-chu" method="get"  class="header_search_form clearfix">
-										<input id="keyword" name="keyword" type="search" required="required" class="header_search_input" placeholder="Search for products...">
+										<input id="keyword" name="keyword" type="search" required="required" class="header_search_input" placeholder="Tìm kiếm sản phẩm...">
 										<button type="submit" class="header_search_button trans_300" value="Submit"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918770/search.png" alt=""></button>
 									</form>
 								</div>
@@ -84,7 +84,7 @@
 										<div class="cart_count"><span id="iconShowTotalItemsInCart">${ totalItems}</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="${base }/cart/checkout">Cart</a></div>
+										<div class="cart_text"><a href="${base }/cart/checkout">Giỏ hàng</a></div>
 										
 									</div>
 								</div>
@@ -112,7 +112,7 @@
 
 							<div class="main_nav_menu">
 								<ul class="standard_dropdown main_nav_dropdown">
-									<li><a href="${base }/trang-chu">Home<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="${base }/trang-chu">Trang chủ<i class="fas fa-chevron-down"></i></a></li>
 									<li class="hassubs">
 										<a href="#">Danh mục<i class="fas fa-chevron-down"></i></a>
 										<ul class="category-grid">
@@ -122,7 +122,7 @@
 									</c:forEach>
 										</ul>
 									</li>
-									<li><a href="${base }/contact-us">Contact<i class="fas fa-chevron-down"></i></a></li>
+									<li><a href="${base }/contact-us">Liên hệ với chúng tôi<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
 

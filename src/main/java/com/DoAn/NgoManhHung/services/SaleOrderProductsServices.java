@@ -28,12 +28,12 @@ public class SaleOrderProductsServices extends BaseService<SaleOrderProducts>  {
     public PagerData<SaleOrderProducts> search(OderSearchModel searchModel) {
 
 		// khởi tạo câu lệnh
-		String sql = "SELECT * FROM tbl_sale_orders_products p WHERE p.status=1";
+		String sql = "SELECT * FROM tbl_sale_orders_products p JOIN tbl_sale_orders s ON p.saleorder_id = s.id WHERE p.status=1";
         
 		if (searchModel != null) {
 			
 			if (!StringUtils.isEmpty(searchModel.getKeyword())) {
-				sql += " and (p.name like '%" + searchModel.getKeyword() + "%')";
+				sql += " and (s.code like '%" + searchModel.getKeyword() + "%')";
 			}
 		}return getEntitiesByNativeSQL(sql, searchModel.getPage());
     }

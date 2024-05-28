@@ -53,9 +53,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link" href="${base }/admin/admin_viewProducts">Home</a></li>
+				<li class="nav-item active"><a class="nav-link" href="${base }/admin/admin_viewProducts">Thống kê</a></li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tài khoản</a>
 					<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 						
 						<c:if test="${isAdmin }">
@@ -63,7 +63,7 @@
 						</c:if>						
 						
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${base }/logout">Logout(${userLogined.username })</a>
+						<a class="dropdown-item" href="${base }/logout">Đăng xuất(${userLogined.username })</a>
 					</div>
 				</li>
 			</ul>
@@ -78,23 +78,23 @@
 				    <input name="page" id="page" class="form-control" type="hidden">
 					<!-- tìm kiếm theo tên sản phẩm -->
 					<input type="text" id="keyword" name="keyword" class="form-control"
-						placeholder="Search" style="margin-right: 5px;" value="${searchModel.keyword}">
+						placeholder="Tìm kiếm" style="margin-right: 5px;" value="${searchModel.keyword}">
 
 					<!-- tìm kiếm theo danh mục sản phẩm -->
 					<select class="form-control" name="categoryId" id="categoryId"
 						style="margin-right: 5px;" value="${searchModel.categoryId}">
-						<option value="0">All</option>
+						<option value="0">Tất cả</option>
 						<c:forEach items="${categories}" var="category">
 							<option value="${category.id }">${category.name }</option>
 						</c:forEach>
 					</select>
 
 					<button type="submit" id="btnSearch" name="btnSearch"
-						value="Search" class="btn btn-primary">Seach</button>
+						value="Search" class="btn btn-primary">Tìm kiếm</button>
 				</div>
 				<div class="d-flex flex-row" style="margin-left: 200px">
 					<a class="btn btn-outline-primary mb-1"
-						href="${base }/admin/admin_addProduct" role="button"> Add New
+						href="${base }/admin/admin_addProduct" role="button"> Thêm sản phẩm
 					</a>
 				</div>
 			</div>
@@ -103,12 +103,12 @@
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">ID</th>
-						<th scope="col">Title</th>
-						<th scope="col">Avatar</th>
-						<th scope="col">Price</th>
-						<th scope="col">Price_Sale</th>
-						<th scope="col">Short_Description</th>
-						<th scope="col">Detail_Description</th>
+						<th scope="col">Tên sản phẩm</th>
+						<th scope="col">Hình ảnh</th>
+						<th scope="col">Giá gốc</th>
+						<th scope="col">Giá giảm</th>
+						<th scope="col">Mô tả ngắn gọn</th>
+						<th scope="col">Mô tả chi tiết</th>
 					</tr>
 				</thead>
 				<c:forEach var="c" items="${pdProducts.data}" varStatus="loop">
@@ -138,10 +138,10 @@
 							   </span>
 							</td>
 							<td><a class="btn btn-danger" role="button"
-								onclick="DeleteProduct(${c.id});">Delete</a> 
+								onclick="DeleteProduct(${c.id});">Xóa</a> 
 								<a
 								href="${base}/admin/admin_addProduct/${c.id}"
-								class="btn btn-primary">Edit</a></td>
+								class="btn btn-primary">Chỉnh sửa</a></td>
 						</tr>
 					</tbody>
 

@@ -100,13 +100,13 @@ label {
 							<div class="home-filter">
 								<input id="page" name="page" class="form-control" type="hidden"> 
 								<input type="text" id="keyword"
-									name="keyword" class="form-control" placeholder="Search"
+									name="keyword" class="form-control" placeholder="Tìm kiếm"
 									style="margin-right: 5px;" value="${searchModel.keyword}">
 								<span class="home-filter__label">Sắp xếp theo</span>
 								<div class="select-input"> 
 								    <select class="form-control" name="sort_by" id="sort_by"
 						style="margin-right: 5px;" value="${searchModel.sort_by}">
-						<option value="${searchModel.sort_by}">All</option>
+						<option value="${searchModel.sort_by}">Tất cả</option>
 						<option value="giathap">Giá : Cao đến thấp</option>
 						<option value="giacao">Giá : Thấp đến cao</option>
 					</select>
@@ -120,7 +120,7 @@ label {
     <label for="maxValue">Đến:</label>
     <input type="number" id="maxValue" name="maxValue">
 								<button type="submit" id="btnSearch" name="btnSearch"
-									value="Search" class="btn btn-primary">Search</button>
+									value="Search" class="btn btn-primary">Tìm kiếm</button>
 						</form>
 					</div>
 					<section>
@@ -162,7 +162,7 @@ label {
 											<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 												<div class="text-center">
 													<a class="btn btn-outline-dark mt-auto" href="#"
-														onclick="AddToCart('${base}',${c.id}, 1)"><i class="fa-solid fa-cart-shopping"></i>  Add to cart</a>
+														onclick="AddToCart('${base}',${c.id}, 1)"><i class="fa-solid fa-cart-shopping"></i>  Thêm vào giỏ hàng</a>
 												</div>
 											</div>
 										</div>
@@ -215,39 +215,7 @@ label {
 			</section>
 			<!-- Section: Social media -->
 
-			<!-- Section: Form -->
-			<section class="">
-				<form action="">
-					<!--Grid row-->
-					<div class="row d-flex justify-content-center">
-						<!--Grid column-->
-						<div class="col-auto">
-							<p class="pt-2">
-								<strong>Sign up for our newsletter</strong>
-							</p>
-						</div>
-						<!--Grid column-->
-
-						<!--Grid column-->
-						<div class="col-md-5 col-12">
-							<!-- Email input -->
-							<div class="form-outline form-white mb-4">
-								<input type="email" id="form5Example21" class="form-control" />
-							</div>
-						</div>
-						<!--Grid column-->
-
-						<!--Grid column-->
-						<div class="col-auto">
-							<!-- Submit button -->
-							<button type="submit" class="btn btn-outline-dark mb-4">
-								Subscribe</button>
-						</div>
-						<!--Grid column-->
-					</div>
-					<!--Grid row-->
-				</form>
-			</section>
+		
 			<!-- Section: Form -->
 
 			<!-- Section: Text -->
@@ -273,16 +241,7 @@ label {
 					<!--Grid column-->
 
 					<!--Grid column-->
-					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-						<h5 class="text-uppercase">Danh mục</h5>
-
-						<ul class="list-unstyled mb-0">
-							<li><a href="#!" class="text-dark">Link 1</a></li>
-							<li><a href="#!" class="text-dark">Link 2</a></li>
-							<li><a href="#!" class="text-dark">Link 3</a></li>
-							<li><a href="#!" class="text-dark">Link 4</a></li>
-						</ul>
-					</div>
+				
 					<!--Grid column-->
 
 					<!--Grid column-->

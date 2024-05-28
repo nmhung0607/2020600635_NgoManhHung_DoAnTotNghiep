@@ -28,28 +28,28 @@
 					</span>
 					<c:if test="${not empty param.login_error}">
 						<div class="alert alert-danger" role="alert" style="font-size:15px">
-							Login attempt was not successful, try again!!!
+							Đăng nhập không thành công, thử lại!!!
 						</div>
 					</c:if>
 					
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="username">
 						<span class="focus-input100"></span>
-						<span class="label-input100">Username</span>
+						<span class="label-input100">Tên đăng nhập</span>
 					</div>
 					
 					 
 					<div class="wrap-input100 validate-input" data-validate="Password is required">
 						<input class="input100" type="password" name="password">
 						<span class="focus-input100"></span>
-						<span class="label-input100">Password</span>
+						<span class="label-input100">Mật khẩu</span>
 					</div>
 
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 							<label class="label-checkbox100" id="remember-me" name="remember-me" for="ckb1">
-								Remember me
+								Lưu đăng nhập
 							</label>
 						</div>
 
